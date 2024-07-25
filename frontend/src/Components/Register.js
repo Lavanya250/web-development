@@ -1,108 +1,156 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaEnvelope, FaLock, FaUser, FaPhone } from 'react-icons/fa'; // Importing icons from react-icons library
+import './Register.css'; // Import the CSS file
 
 function Register() {
+  // State for form data, error message, and loading state
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    phoneNumber: ''
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
+  // Handle input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  // Handle form submission
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Validation checks
-    if (!formData.email || !formData.password || !formData.confirmPassword) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.confirmPassword || !formData.phoneNumber) {
       setError('All fields are required.');
     } else if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Please enter a valid email address.');
     } else {
       setError('');
-      console.log(formData);
-      navigate("/login");
+      setLoading(true);
+      try {
+        // Simulate API call
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        console.log(formData);
+        // Navigate to login page after successful registration
+        navigate('/login');
+      } catch (error) {
+        setError('Failed to register. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
+  // Toggle password visibility
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  // Render the Register component
   return (
-    <div style={styles.container}>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          value={formData.email}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          value={formData.password}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          placeholder="Confirm your password"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        {error && <p style={styles.error}>{error}</p>}
-        <button type="submit" style={styles.button}>Register</button>
-      </form>
+    <div className="register-wrapper">
+      <div className="register-container">
+        <h1 className="register-title">Create an Account</h1>
+        <form onSubmit={handleSubmit} className="register-form">
+          <div className="register-input-container">
+            <FaUser className="register-icon" />
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={handleChange}
+              className="register-input"
+            />
+          </div>
+          <div className="register-input-container">
+            <FaUser className="register-icon" />
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={handleChange}
+              className="register-input"
+            />
+          </div>
+          <div className="register-input-container">
+            <FaEnvelope className="register-icon" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="register-input"
+            />
+          </div>
+          <div className="register-input-container">
+            <FaLock className="register-icon" />
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              className="register-input"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="register-toggle-button"
+            >
+              {passwordVisible ? 'Hide' : 'Show'}
+            </button>
+          </div>
+          <div className="register-input-container">
+            <FaLock className="register-icon" />
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="register-input"
+            />
+          </div>
+          <div className="register-input-container">
+            <FaPhone className="register-icon" />
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              className="register-input"
+            />
+          </div>
+          {error && <p className="register-error">{error}</p>}
+          <div className="register-button-container">
+            <button type="submit" className="register-button" disabled={loading}>
+              {loading ? 'Registering...' : 'Register'}
+            </button>
+            <p>Already have an account? <Link to="/login" className="register-link">Login</Link></p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    backgroundColor: '#f5f5f5',
-    padding: '20px'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '300px'
-  },
-  input: {
-    margin: '10px 0',
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '4px',
-    border: '1px solid #ccc'
-  },
-  button: {
-    padding: '10px',
-    fontSize: '16px',
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer'
-  },
-  error: {
-    color: 'red',
-    margin: '10px 0'
-  }
-};
 
 export default Register;

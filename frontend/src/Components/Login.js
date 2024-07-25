@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaEnvelope, FaLock } from 'react-icons/fa';  // Importing icons from react-icons library
+import './Login.css'; // Import the CSS file
 
-// Login component
 function Login() {
-  // State for form data and error message
+  // State for form data, error message, and loading state
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   // Handle input changes
   const handleChange = (event) => {
@@ -17,97 +20,82 @@ function Login() {
   };
 
   // Handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!formData.email || !formData.password) {
       setError('Both email and password are required.');
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Please enter a valid email address.');
     } else {
       setError('');
-      console.log(formData);
+      setLoading(true);
+      try {
+        // Simulate API call
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        console.log(formData);
+      } catch (error) {
+        setError('Failed to login. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
+  };
+
+  // Toggle password visibility
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
   // Render the Login component
   return (
-    <div style={styles.container}>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          value={formData.email}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          value={formData.password}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        {error && <p style={styles.error}>{error}</p>}
-        <div style={styles.buttonContainer}>
-          <button type="submit" style={styles.button}>Login</button>
-          <p>Don't have an account? <Link to="/register" style={styles.link}>Register</Link></p>
-        </div>
-      </form>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <h1 className="login-title">Welcome Back!</h1>
+        <h1 className="login-title">Login to your account</h1>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="login-input-container">
+            <FaEnvelope className="login-icon" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              className="login-input"
+            />
+          </div>
+          <div className="login-input-container">
+            <FaLock className="login-icon" />
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              className="login-input"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="login-toggle-button"
+            >
+              {passwordVisible ? 'Hide' : 'Show'}
+            </button>
+          </div>
+          {error && <p className="login-error">{error}</p>}
+          <div className="login-button-container">
+            <button type="submit" className="login-button" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+            <Link to="/forgot-password" className="login-forgot-password">Forgot Password?</Link>
+            <p>Don't have an account? <Link to="/register" className="login-link">Register</Link></p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
-
-// Styles
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    backgroundColor: '#f5f5f5',
-    padding: '20px'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '300px'
-  },
-  input: {
-    margin: '10px 0',
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '4px',
-    border: '1px solid #ccc'
-  },
-  buttonContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  button: {
-    padding: '10px',
-    fontSize: '16px',
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    width: '100%',
-    marginBottom: '10px'
-  },
-  link: {
-    fontSize: '16px',
-    color: '#007BFF',
-    textDecoration: 'none'
-  },
-  error: {
-    color: 'red',
-    margin: '10px 0'
-  }
-};
 
 export default Login;

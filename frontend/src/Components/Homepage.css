@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.homepage-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.carousel .slide img {
+
+  width: 100%;
+  height: auto;
+  max-height: 605px;
+  object-fit: cover;
+  border-radius: 10px;
+  padding-top: 15px;
+}
+
+.content {
+  margin-top: 20px;
+  text-align: center;
+}
+.categories-container {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  margin-top: 20px;
+}
+
+.category {
+  width: 120px; /* Increase the size of the circle */
+  height: 120px; /* Increase the size of the circle */
+  padding: 10px; /* Add padding inside the circle */
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.category img {
+   width: 110%; /*Reduce the width of the image to fit within the padded circle */
+  height: 80%; /* Reduce the height of the image to fit within the padded circle */
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.category:hover {
+  opacity: 0.8;
+}
