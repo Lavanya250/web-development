@@ -9,6 +9,9 @@ import Register from './Register';
 import img1 from '../assets/img1.jpg';
 import img2 from '../assets/img2.jpg';
 import img3 from '../assets/img3.jpg';
+// import brand1 from '../assets/brand1.jpg';
+// import brand2 from '../assets/brand2.jpg';
+// import brand3 from '../assets/brand3.jpg';
 
 // Home component
 function Home() {
@@ -66,16 +69,118 @@ function Home() {
           <span>Babycare</span>
         </div>
         {/* Add more categories if needed */}
-        <div>
-          <h2>SHOP BY WORLD BRANDS</h2>
-        </div>
-        
       </div>
-      
+      <h2>OFFERS</h2>
+      <div className="brand-cards-container">
+        <div className="brand-card">
+          <img src="https://www.shoppre.com/img/images/personal-shopper-wow-offer.jpg" alt="Brand 1" />
+
+        </div>
+        <div className="brand-card">
+          <img src="https://pbfy.com/wp-content/uploads/2021/05/PBFY-First-purchase-5OFF.png" alt="Brand 2" />
+        </div>
+        <div className="brand-card">
+          <img src="https://www.pondicherryshopping.com/image/catalog/get500off.jpg" alt="Brand 3" />
+        </div>
+        <div className="brand-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvPN5D2RtsDvi0kZ_7VfzoPYjY7N47Z88XLEzaq-QWR2F78AvHaI16QKZctRZppT5nTs4&usqp=CAU" alt="Brand 3" />
+        </div>
+        <div className="brand-card">
+          <img src="https://ship.shoppre.com/wp-content/uploads/2019/05/shoppre-offers.png" alt="Brand 3" />
+        </div>
+        <div className="brand-card">
+          <img src="https://uploads.commoninja.com/searchengine/wordpress/first-purchase-discount-for-woocommerce.jpg" alt="Brand 3" />
+        </div>
+        {/* Add more brand cards as needed */}
+      </div>
+      <h2 className='fruits'> Fruits and Vegetables</h2>
+      <div className="product-cards-container">
+        <div className="product-card">
+          <img src="https://m.media-amazon.com/images/I/71S6oQqVa5L._AC_UF1000,1000_QL80_.jpg" alt="Product 1" />
+          <div className="product-info">
+            <span className="product-name">Fresh Vegetables</span>
+            <span className="product-price">MIN 27% OFF</span>
+          </div>
+        </div>
+        <div className="product-card">
+          <img src="https://t3.ftcdn.net/jpg/02/47/00/00/360_F_247000004_RPLyD5P1C8dIJg4ecU2PnNUpGX1sjhA0.jpg" alt="Product 2" />
+          <div className="product-info">
+            <span className="product-name">Fresh Fruits</span>
+            <span className="product-price">MIN 27% OFF</span>
+          </div>
+        </div>
+        <div className="product-card">
+          <img src="https://www.liveeatlearn.com/wp-content/uploads/2023/01/junglesop.jpg" alt="Product 3" />
+          <div className="product-info">
+            <span className="product-name">Cuts & Exotics</span>
+            <span className="product-price">MIN 27% OFF</span>
+          </div>
+        </div>
+        <div className="product-card">
+          <img src="https://img.freepik.com/premium-photo/spicy-herbs-slice-lemon-white-background-sage-thyme-tarragon-composition-herbs_101963-819.jpg" alt="Product 3" />
+          <div className="product-info">
+            <span className="product-name">Herbs & Seasanings</span>
+            <span className="product-price">MIN 27% OFF</span>
+          </div>
+        </div>
+        <h2 className='fruits'>Your Daily Staples</h2>
+        <div className="different-product-cards-container">
+        <div className="different-product-card">
+          <img src="https://kiranamarket.com/wp-content/uploads/2020/12/wheat-flour.jpg" alt="flour" />
+          <div className="different-product-info">
+            <span className="different-product-name">Atta & Flour</span>
+           
+          </div>
+        </div>
+        <div className="different-product-card">
+          <img src="https://t4.ftcdn.net/jpg/05/02/70/05/360_F_502700549_RFCRi0bIL5ADXLfbP4Q3qUYtWYGR9g8V.jpg" alt="Rice" />
+          <div className="different-product-info">
+            <span className="different-product-name">Rice & Rice Products</span>
+           
+          </div>
+        </div>
+        <div className="different-product-card">
+          <img src="https://as1.ftcdn.net/v2/jpg/04/36/33/00/1000_F_436330088_an7Pv2naOQxIGiC6X34m5fHD9Vu2SOBt.jpg" alt="Dals" />
+          <div className="different-product-info">
+            <span className="different-product-name">Dals & Pulses</span>
+            
+          </div>
+        </div>
+        <div className="different-product-card">
+          <img src="https://qph.cf2.quoracdn.net/main-qimg-771d07b3c07f38b1679174c4ffedcf4f-lq" alt="Oils" />
+          <div className="different-product-info">
+            <span className="different-product-name">Oils & Ghee</span>
+            
+          </div>
+        </div>
+        <div className="different-product-card">
+          <img src="https://shreejifoods.in/cdn/shop/products/almonds-regular.jpg?v=1612532758" alt="Dry fruits" />
+          <div className="different-product-info">
+            <span className="different-product-name">Dry Fruits</span>
+            
+          </div>
+        </div>
+        <div className="different-product-card">
+          <img src="https://image1.jdomni.in/product/19082020/6A/A6/A1/DC23F56485E76E586D8C02A919_1597851862808.jpg" alt="Sugar" />
+          <div className="different-product-info">
+            <span className="different-product-name">Jaggery</span>
+            
+          </div>
+        </div>
+      <div className='heading-big'>DISCOVER MORE</div>
+      <div className='head-div'>
+        <div className='disco-mor'>Offer</div>
+        <div className='disco-mor'>Organic</div>
+        <div className='disco-mor'>Health</div>
+        <div className='disco-mor'>Gifts</div>
+      </div>
+      </div>
     </div>
-    
+    </div>
   );
-}
+}     
+   
+  
 
 // Categories component
 function Categories() {
@@ -95,7 +200,7 @@ function Contact() {
 // Carousel component
 function HomeCarousel() {
   return (
-    <Carousel showThumbs={false} infiniteLoop={true} autoPlay={true} interval={2000}>
+    <Carousel showThumbs={false} infiniteLoop={true} autoPlay={true} interval={1900}>
       <div>
         <img src={img1} alt="Slide 1" />
       </div>
@@ -124,6 +229,7 @@ function Homepage() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
+          {/* <Footer/> */}
         </div>
       </div>
     </Router>
@@ -131,3 +237,6 @@ function Homepage() {
 }
 
 export default Homepage;
+
+
+

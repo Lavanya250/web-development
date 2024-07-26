@@ -93,8 +93,9 @@ function Login() {
             <p>Don't have an account? <Link to="/register" className="login-link">Register</Link></p>
           </div>
         </form>
-      </div>
     </div>
+    
+      </div>
   );
 }
 

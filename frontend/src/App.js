@@ -2,19 +2,21 @@ import React from 'react';
 // import {Route, Routes } from 'react-router-dom';
 // import Login from './Components/Login';
 // import Register from './Components/Register';
-import Homepage from './Components/Homepage';
-
-
+// import Homepage from './Components/Homepage';
+// import Footer from './Components/Footer';
+import Admin from'./Components/Admin';
 function App() {
     return (
           <div className='App'>
-            <Homepage/>
+            <Admin/>
+            {/* <Homepage/> */}
             {/* <Routes>
     
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes> */}
+          {/* <Footer/> */}
           </div>
       );
     }
