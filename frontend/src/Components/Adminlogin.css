@@ -1,0 +1,164 @@
+/* General styles */
+body {
+    margin: 0;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  /* Wrapper for the entire login component */
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 110%;
+    height: 120%; /* Adjust width as needed */
+    max-width: 1200px; /* Max width for the container */
+  }
+  
+ /* Parent container for the logo and login form */
+.login-parent-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%; /* Full width of the container */
+    max-width: 1200px; /* Max width for the parent container */
+    border: 2px solid #189f28ad; /* Border for the container */
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for better visual effect */
+  }
+  
+  /* Container for the logo and text */
+  .login-logo-container {
+    display: flex;
+    flex-direction: column; /* Align logo and text vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 30px; /* Padding for spacing */
+    background-color: #4e956cba; /* Background color for the logo container */
+    flex: 1; /* Make the logo container take up 50% of the space */
+    min-width: 300px; /* Minimum width for the logo container */
+  }
+  
+  /* Logo styles */
+  .login-logo {
+    width: 180px; /* Increased size of the logo */
+    height: auto;
+    margin-bottom: 10px; /* Space between logo and text */
+  }
+  
+  /* Text container below the logo */
+  .login-logo-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Text style */
+  .login-logo-text {
+    font-size: 50px;
+    color: white; /* Adjust the color as needed */
+    font-family: 'Brush Script MT', cursive; /* Cursive font style */
+    text-align: center;
+  }
+  
+  
+  /* Container for the form */
+  .login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f8f9fa; /* Color for the form container */
+    flex: 1; /* Make the form container take up 50% of the space */
+  }
+  
+  /* Title of the login form */
+  .login-title {
+    font-size: 24px;
+    color: #175e29ca;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Form styles */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Full width of the form container */
+  }
+  
+  /* Container for the input fields and icons */
+  .login-input-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 2px solid #189f28ad;
+    padding-bottom: 5px;
+  }
+  
+  /* Icon styles */
+  .login-icon {
+    margin-right: 10px;
+    color: #007BFF;
+  }
+  
+  /* Input field styles with underline only */
+  .login-input {
+    padding: 10px 0;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    flex: 1;
+    background: none;
+  }
+  
+  /* Button to toggle password visibility */
+  .login-toggle-button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0b459d9d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  /* Container for the buttons */
+  .login-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Login button styles */
+  .login-button {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #f85f48ef;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #c5351cd9;
+  }
+  
+  /* Error message styles */
+  .login-error {
+    color: red;
+    margin: 10px 0;
+  }
+  

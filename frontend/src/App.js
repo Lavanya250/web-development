@@ -1,22 +1,24 @@
 import React from 'react';
+// import Adminlogin from './Components/Adminlogin';
 // import {Route, Routes } from 'react-router-dom';
 // import Login from './Components/Login';
 // import Register from './Components/Register';
-// import Homepage from './Components/Homepage';
-// import Footer from './Components/Footer';
-import Admin from'./Components/Admin';
+import Homepage from './Components/Homepage';
+import Footer from './Components/Footer';
+// import Admin from'./Components/Admin';
 function App() {
     return (
           <div className='App'>
-            <Admin/>
-            {/* <Homepage/> */}
+            {/* <Admin/> */}
+            <Homepage/>
             {/* <Routes>
     
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes> */}
-          {/* <Footer/> */}
+          <Footer/>
+          {/* <Adminlogin/> */}
           </div>
       );
     }

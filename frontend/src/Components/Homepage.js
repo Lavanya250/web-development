@@ -180,9 +180,7 @@ function Home() {
   );
 }     
    
-  
-
-// Categories component
+  // Categories component
 function Categories() {
   return <h2>Categories</h2>;
 }
@@ -237,6 +235,5 @@ function Homepage() {
 }
 
 export default Homepage;
-
 
 
