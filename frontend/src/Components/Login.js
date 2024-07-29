@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaLock } from 'react-icons/fa';  // Importing icons from react-icons library
 import './Login.css'; // Import the CSS file
+import Navbar from './Navbar';
+import Header from './Header';
 
 function Login() {
   // State for form data, error message, and loading state
@@ -48,6 +50,9 @@ function Login() {
 
   // Render the Login component
   return (
+    <div className='loginback'>
+      <Header/>
+      <Navbar/>
     <div className="login-wrapper">
       <div className="login-container">
         <h1 className="login-title">Welcome Back!</h1>
@@ -63,7 +68,7 @@ function Login() {
               value={formData.email}
               onChange={handleChange}
               className="login-input"
-            />
+              />
           </div>
           <div className="login-input-container">
             <FaLock className="login-icon" />
@@ -80,7 +85,7 @@ function Login() {
               type="button"
               onClick={togglePasswordVisibility}
               className="login-toggle-button"
-            >
+              >
               {passwordVisible ? 'Hide' : 'Show'}
             </button>
           </div>
@@ -93,6 +98,7 @@ function Login() {
             <p>Don't have an account? <Link to="/register" className="login-link">Register</Link></p>
           </div>
         </form>
+              </div>
     </div>
     
       </div>

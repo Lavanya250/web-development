@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Homepage.css'; // Import the CSS file
@@ -9,16 +9,26 @@ import Register from './Register';
 import img1 from '../assets/img1.jpg';
 import img2 from '../assets/img2.jpg';
 import img3 from '../assets/img3.jpg';
+import Adminlogin from './Adminlogin';
+import Admin from './Admin';
+import Footer from'./Footer';
+import Header from './Header';
+// import Adminlogin from './Adminlogin';
+// import AdminLayout from './AdminLayout';
+// import AdminLayout from './AdminLayout';
+// import Adminlogin from './Adminlogin';
 // import brand1 from '../assets/brand1.jpg';
 // import brand2 from '../assets/brand2.jpg';
 // import brand3 from '../assets/brand3.jpg';
 
 // Home component
-function Home() {
+function Homepage() {
   return (
     <div>
+      <Navbar/>
+      <Header/>
       <HomeCarousel />
-      <h2>SHOP BY CATEGORY</h2>
+      <h2 className='fruits'>SHOP BY CATEGORY</h2>
       <div className="categories-container">
         <div className="category">
           <img src="https://hips.hearstapps.com/hmg-prod/images/pomegranate-1558625011.jpg?crop=1xw:1xh;center,top&resize=640:*" alt="Fruits" />
@@ -70,7 +80,7 @@ function Home() {
         </div>
         {/* Add more categories if needed */}
       </div>
-      <h2>OFFERS</h2>
+      <h2 className='offer'>OFFERS</h2>
       <div className="brand-cards-container">
         <div className="brand-card">
           <img src="https://www.shoppre.com/img/images/personal-shopper-wow-offer.jpg" alt="Brand 1" />
@@ -96,7 +106,7 @@ function Home() {
       <h2 className='fruits'> Fruits and Vegetables</h2>
       <div className="product-cards-container">
         <div className="product-card">
-          <img src="https://m.media-amazon.com/images/I/71S6oQqVa5L._AC_UF1000,1000_QL80_.jpg" alt="Product 1" />
+          <img src="https://m.media-amazon.com/images/I/71S6oQqVa5L.AC_UF1000,1000_QL80.jpg" alt="Product 1" />
           <div className="product-info">
             <span className="product-name">Fresh Vegetables</span>
             <span className="product-price">MIN 27% OFF</span>
@@ -123,7 +133,14 @@ function Home() {
             <span className="product-price">MIN 27% OFF</span>
           </div>
         </div>
-        <h2 className='fruits'>Your Daily Staples</h2>
+        <div className="product-card">
+          <img src="https://img.freepik.com/premium-photo/spicy-herbs-slice-lemon-white-background-sage-thyme-tarragon-composition-herbs_101963-819.jpg" alt="Product 3" />
+          <div className="product-info">
+            <span className="product-name">Herbs & Seasanings</span>
+            <span className="product-price">MIN 27% OFF</span>
+          </div>
+        </div>
+        <h2 className=''>Your Daily Staples</h2>
         <div className="different-product-cards-container">
         <div className="different-product-card">
           <img src="https://kiranamarket.com/wp-content/uploads/2020/12/wheat-flour.jpg" alt="flour" />
@@ -166,7 +183,9 @@ function Home() {
             <span className="different-product-name">Jaggery</span>
             
           </div>
-        </div>
+          </div>
+      
+
       <div className='heading-big'>DISCOVER MORE</div>
       <div className='head-div'>
         <div className='disco-mor'>Offer</div>
@@ -176,63 +195,46 @@ function Home() {
       </div>
       </div>
     </div>
+<Footer/>
     </div>
   );
 }     
    
   // Categories component
-function Categories() {
-  return <h2>Categories</h2>;
-}
+
 
 // About component
-function About() {
-  return <h2>About</h2>;
-}
 
 // Contact component
-function Contact() {
-  return <h2>Contact</h2>;
-}
 
 // Carousel component
 function HomeCarousel() {
   return (
-    <Carousel showThumbs={false} infiniteLoop={true} autoPlay={true} interval={1900}>
+    <Carousel showThumbs={false} infiniteLoop={true} autoPlay={true} interval={1400}>
       <div>
-        <img src={img1} alt="Slide 1" />
+        <img src={img3} alt="Slide 1" />
       </div>
       <div>
         <img src={img2} alt="Dairy Products" />
       </div>
       <div>
-        <img src={img3} alt="Bakery Items" />
+        <img src={img1} alt="Bakery Items" />
       </div>
     </Carousel>
   );
 }
 
-// Main HomePage component
-function Homepage() {
-  return (
-    <Router>
-      <div className="homepage-wrapper">
-        <Navbar /> {/* Use the Navbar component here */}
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-          {/* <Footer/> */}
-        </div>
-      </div>
-    </Router>
-  );
-}
+
+// // Main HomePage component
+// function Homepage() {
+//   return (
+//       <div className="homepage-wrapper">
+//         <Navbar /> {/* Use the Navbar component here */}
+        
+//       </div>
+    
+//   );
+// }
 
 export default Homepage;
 

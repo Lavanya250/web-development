@@ -29,7 +29,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 80px; /* Adjust the gap as needed */
+  gap: 50px; /* Adjust the gap as needed */
   margin-top: 20px;
 }
 
@@ -98,17 +98,21 @@ body {
 }
 
 .fruits {
-  padding-right: 70%;
-  
-  border-bottom: 2px solid #ddd; /* Adds a subtle border below */
+  /* padding-right: 50%; */
+  padding-left: 570px;
+  /* border-bottom: 2px solid #ddd; Adds a subtle border below */
   margin: 20px 0;
+}
+.offer{
+  padding-left: 630px;
 }
 
 .product-cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px; /* Adjust the gap as needed */
+  padding-left: 100px;
+  /* justify-content: center; */
+  gap: 30px; /* Adjust the gap as needed */
   margin-top: 20px;
 }
 
@@ -151,8 +155,10 @@ body {
 .different-product-cards-container {
   display: flex;
   flex-wrap: wrap;
+  padding-left: 5px;
+  padding-right: 40px;
   justify-content: center;
-  gap: 20px; /* Adjust the gap as needed */
+  gap: 30px; /* Adjust the gap as needed */
   margin-top: 20px;
 }
 

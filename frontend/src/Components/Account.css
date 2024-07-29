@@ -1,0 +1,194 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .account-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #cafee6c8;
+  }
+  
+  .main-content2 {
+    display: flex;
+    flex: 1;
+    margin-top: 20px;
+  }
+  
+  .sidebar1 {
+    width: 200px;
+    background-color: #0e6754db;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: 85px; /* Add margin-top to distinguish from header */
+  }
+  
+  .sidebar1 ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar1 ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    color: rgb(245, 236, 236);
+    cursor: pointer;
+  }
+  
+  .sidebar1 ul li:hover {
+    background-color: gray;
+  }
+  
+  .content1 {
+    flex-grow: 1;
+    padding: 20px;
+    margin-top: 50px; /* Ensure it starts below the header */
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: normal;
+    color: rgb(255, 98, 0);
+  }
+  
+  /* Personal Details */
+  .personal-details .details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .edit-button {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* My Orders */
+  .my-orders .orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .order-card {
+    width: 200px; /* Increased width */
+    height: 250px; /* Set height */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .order-image {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .order-details {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .order-name {
+    font-weight: bold;
+  }
+  
+  .order-description {
+    margin-top: 5px;
+    color: #666;
+  }
+  
+  /* My Payments */
+  .my-payments .payments-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .payment-card {
+    width: 300px; /* Increased width */
+    height: 100px; /* Set height */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: hsla(215, 34%, 64%, 0.319);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .payment-method {
+    font-weight: bold;
+  }
+  
+  .payment-date,
+  .payment-amount {
+    margin-top: 5px;
+    color: #666;
+  }
+  
+  /* Past Orders */
+  .past-orders .past-orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .past-order-card {
+    width: 230px; /* Increased width */
+    height: 280px; /* Set height */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .past-order-image {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .past-order-details {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .past-order-name {
+    font-weight: bold;
+  }
+  
+  .past-order-description {
+    margin-top: 5px;
+    color: #666;
+  }
+  
+  .past-order-date {
+    margin-top: 10px;
+    color: #999;
+  }
+  

@@ -1,104 +1,133 @@
-.navbar-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+/* General styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+.registerback{
+  background-color: #cafee68f;
 }
 
-.navbar-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 10px auto;
-  padding: 10px;
-}
-
-.logo-link {
-  margin-right: 10px; /* Space between logo and site name */
-}
-
-.logo {
-  height: 65px; /* Adjust height as needed */
-  width: auto;
-}
-
-.site-name {
-  font-size: 24px;
-  font-weight: bold;
-  margin-right: 20px;
-  color: #167246ec; /* Adjust color as needed */
-}
-
-.search-bar {
-  flex: 1; /* Makes the search bar take up remaining space */
+/* Wrapper for the entire register component */
+.register-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #cafee68f;
 }
 
-.search-bar input {
-  width: 80%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Container for the register form */
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(123, 123, 124, 0.252);
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Title of the register form */
+.register-title {
+  font-size: 24px;
+  color: #175e29ca;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Form styles */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+/* Container for the input fields and icons */
+.register-input-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  border-bottom: 2px solid #189f28ad;
+  padding-bottom: 5px;
+}
+
+/* Icon styles */
+.register-icon {
+  margin-right: 10px;
+  color: #007BFF;
+}
+
+/* Input field styles with underline only */
+.register-input {
+  padding: 10px 0;
   font-size: 16px;
+  border: none;
+  outline: none;
+  flex: 1;
+  background: none;
 }
 
-.search-bar button {
-  background-color: #167246ec;
+/* Button to toggle password visibility */
+.register-toggle-button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #0b459d9d;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 10px;
-  margin-left: -1px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
-.search-bar button i {
-  color: #fff;
-  font-size: 16px;
+/* Error message styles */
+.register-error {
+  color: red;
+  margin: 10px 0;
+  text-align: center;
 }
 
-.navbar {
-  width: 100%;
-  background-color: #167246ec;
-  padding: 10px 0;
+/* Container for the buttons */
+.register-button-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  border-radius: 8px;
+  margin-top: 20px;
 }
 
-.navbar-menu {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.navbar-item {
-  margin: 0 15px;
-}
-
-.navbar-item a {
-  color: #fff;
-  text-decoration: none;
+/* Register button styles */
+.register-button {
+  padding: 12px;
   font-size: 18px;
-  padding-inline: 20px;
-}
-
-.navbar-item a:hover {
-  text-decoration: underline;
-}
-
-.navbar-login {
-  margin-right: 20px;
-}
-
-.navbar-login-link {
+  background-color: #f85f48ef;
   color: #fff;
-  text-decoration: none;
-  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.navbar-login-link:hover {
+.register-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.register-button:hover {
+  background-color: #c5351cd9;
+}
+
+/* Link to login page */
+.register-link {
+  font-size: 16px;
+  color: #b02e2ed5;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.register-link:hover {
   text-decoration: underline;
 }

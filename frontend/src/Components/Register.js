@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaUser, FaPhone } from 'react-icons/fa'; // Importing icons from react-icons library
 import './Register.css'; // Import the CSS file
+import Navbar from './Navbar';
+import Header from './Header';
 
 function Register() {
   // State for form data, error message, and loading state
@@ -57,6 +59,9 @@ function Register() {
 
   // Render the Register component
   return (
+    <div className='registerback'>
+     <Header/>
+      <Navbar/>
     <div className="register-wrapper">
       <div className="register-container">
         <h1 className="register-title">Create an Account</h1>
@@ -71,7 +76,7 @@ function Register() {
               value={formData.firstName}
               onChange={handleChange}
               className="register-input"
-            />
+              />
           </div>
           <div className="register-input-container">
             <FaUser className="register-icon" />
@@ -83,7 +88,7 @@ function Register() {
               value={formData.lastName}
               onChange={handleChange}
               className="register-input"
-            />
+              />
           </div>
           <div className="register-input-container">
             <FaEnvelope className="register-icon" />
@@ -95,7 +100,7 @@ function Register() {
               value={formData.email}
               onChange={handleChange}
               className="register-input"
-            />
+              />
           </div>
           <div className="register-input-container">
             <FaLock className="register-icon" />
@@ -107,7 +112,7 @@ function Register() {
               value={formData.password}
               onChange={handleChange}
               className="register-input"
-            />
+              />
             <button
               type="button"
               onClick={togglePasswordVisibility}
@@ -126,7 +131,7 @@ function Register() {
               value={formData.confirmPassword}
               onChange={handleChange}
               className="register-input"
-            />
+              />
           </div>
           <div className="register-input-container">
             <FaPhone className="register-icon" />
@@ -138,7 +143,7 @@ function Register() {
               value={formData.phoneNumber}
               onChange={handleChange}
               className="register-input"
-            />
+              />
           </div>
           {error && <p className="register-error">{error}</p>}
           <div className="register-button-container">
@@ -148,6 +153,7 @@ function Register() {
             <p>Already have an account? <Link to="/login" className="register-link">Login</Link></p>
           </div>
         </form>
+              </div>
       </div>
     </div>
   );

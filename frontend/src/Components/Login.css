@@ -3,8 +3,10 @@ body {
     margin: 0;
     /* font-family: Arial, sans-serif; */
     background-position: 100px;
-  background-color: #f8f9fa;
-
+  background-color: #376ca0;
+.loginback{
+  background-color: #cafee68f;
+}
   }
   
   /* Wrapper for the entire login component */
@@ -12,8 +14,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 10px;
     /* height: 50%; */
-    background-color: #fff;
+    background-color: #cafee68f;
   }
 
   /* Container for the login form */
@@ -22,7 +25,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(99, 102, 103, 0.244);
+    background-color: rgba(123, 123, 124, 0.252);
     padding: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -32,7 +35,7 @@ body {
   /* Title of the login form */
   .login-title {
     font-size: 24px;
-    color: #175e29ca;
+    color: #a92525ca;
     margin-bottom: 20px;
     font-weight: bold;
     text-align: center;

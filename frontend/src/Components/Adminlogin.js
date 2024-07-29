@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import './Adminlogin.css'; // Import the CSS file
-import logo from '../assets/logo.jpg'
+import logo from '../assets/logo.jpg';
+import Navbar from './Navbar';
+import Header from './Header';
 
 function Adminlogin() {
   const [formData, setFormData] = useState({
@@ -11,6 +14,7 @@ function Adminlogin() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -19,16 +23,23 @@ function Adminlogin() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!formData.email || !formData.password) {
+    const { email, password } = formData;
+
+    // Validate fields and credentials
+    if (!email || !password) {
       setError('Both email and password are required.');
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
       setError('Please enter a valid email address.');
+    } else if (email !== 'Admin@gmail.com' || password !== 'Admin@123') {
+      setError('Invalid email or password.');
     } else {
       setError('');
       setLoading(true);
       try {
+        // Simulate an API call
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log(formData);
+        // Redirect to the admin page on successful login
+        navigate('/admin');
       } catch (error) {
         setError('Failed to login. Please try again.');
       } finally {
@@ -42,7 +53,11 @@ function Adminlogin() {
   };
 
   return (
+    <div>
+      <Header/>
+      <Navbar/>
     <div className="login-wrapper">
+      
       <div className="login-parent-container">
         <div className="login-logo-container">
           <img src={logo} alt="Logo" className="login-logo" />
@@ -64,7 +79,7 @@ function Adminlogin() {
                 value={formData.email}
                 onChange={handleChange}
                 className="login-input"
-              />
+                />
             </div>
             <div className="login-input-container">
               <FaLock className="login-icon" />
@@ -76,12 +91,12 @@ function Adminlogin() {
                 value={formData.password}
                 onChange={handleChange}
                 className="login-input"
-              />
+                />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 className="login-toggle-button"
-              >
+                >
                 {passwordVisible ? 'Hide' : 'Show'}
               </button>
             </div>
@@ -92,6 +107,7 @@ function Adminlogin() {
               </button>
             </div>
           </form>
+                </div>
         </div>
       </div>
     </div>
