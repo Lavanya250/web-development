@@ -102,7 +102,7 @@ function Adminlogin() {
             </div>
             {error && <p className="login-error">{error}</p>}
             <div className="login-button-container">
-              <button type="submit" className="login-button" disabled={loading}>
+              <button type="sub" className="login-button" disabled={loading}>
                 {loading ? 'Logging in...' : 'Login'}
               </button>
             </div>

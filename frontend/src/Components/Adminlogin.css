@@ -92,12 +92,13 @@
 
 .login-button-container {
   margin-top: 10px;
+  padding-left: 80px;
 }
 
 .login-button {
   width: 50%;
   padding: 10px;
-  background-color: #1e1403f7;
+  background-color: #fb312ef7;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -106,5 +107,5 @@
 }
 
 .login-button:hover {
-  background-color: #710440b8;
+  background-color: #464ff9b8;
 }

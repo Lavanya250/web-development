@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Tab, Menu, MenuItem, TextField } from '@mui/material';
+import { AppBar, Toolbar, Tab, Menu, MenuItem, TextField, Badge } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa'; // Import the cart icon
+import { FaShoppingCart } from 'react-icons/fa';
 import './Categoriesbar.css';
-import logo from '../assets/logo.jpg'; // Update the path to your logo image
+import logo from '../assets/logo.jpg';
+import { useCart } from './Cartcontext';
 
 const Categoriesbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const { getCartCount } = useCart();
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -29,14 +30,12 @@ const Categoriesbar = () => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose} component={Link} to="/Shapecards">Fresh Veggies & fruits</MenuItem>
-              {/* <MenuItem onClick={handleClose} component={Link} to="/Shapecards">Fresh fruits</MenuItem> */}
+              <MenuItem onClick={handleClose} component={Link} to="/Shapecards">Fresh Veggies & Fruits</MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/ExoticFruits">Exotic Fruits</MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/dairy-products">Dairy Products</MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/beverages">Beverages</MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/snacks">Snacks</MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/spices">Spices</MenuItem>
-              {/* Add more MenuItem components as needed */}
             </Menu>
           </div>
           <div className="searchBar">
@@ -48,7 +47,11 @@ const Categoriesbar = () => {
             />
           </div>
           <div className="cartIcon">
-            <FaShoppingCart size={24} /> {/* Adjust size as needed */}
+            <Badge badgeContent={getCartCount()} color="primary">
+              <Link to="/cart">
+                <FaShoppingCart size={24} />
+              </Link>
+            </Badge>
           </div>
         </div>
       </Toolbar>

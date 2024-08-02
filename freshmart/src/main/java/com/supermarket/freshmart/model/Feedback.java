@@ -11,10 +11,10 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String username;
-    private int rating;
-    private String message;
+    private String name;
     private String email;
+    private String subject;
+    private String message;
 
     // Getters and Setters
     public int getId() {
@@ -25,20 +25,28 @@ public class Feedback {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getRating() {
-        return rating;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getMessage() {
@@ -48,12 +56,4 @@ public class Feedback {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email =email;
-}
 }

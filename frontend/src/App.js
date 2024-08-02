@@ -12,10 +12,15 @@ import Admin from './Components/Admin';
 import Shapecards from './Components/Shapecards';
 import ExoticFruits from './Components/ExoticFruits';
 import OrdersPage from './Components/OrdersPage';
+import OrderConfirm from './Components/Orderconfirm';
+import { CartProvider } from './Components/Cartcontext';
+import Cart from './Components/Cart';
 
 function App() {
   return (
     <div className='App'>
+      <CartProvider>
+
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/categories" element={<Categories />} />
@@ -29,8 +34,11 @@ function App() {
         <Route path="/shapecards" element={<Shapecards />} />
         <Route path="/ExoticFruits" element={<ExoticFruits />} />
         <Route path="/orderspage" element={<OrdersPage />} />
-        <Route path="*" element={<Navigate to="/adminlogin" />} />
+        <Route path="/orderconfirm" element={<OrderConfirm />} />
+        <Route path="/cart" element={<Cart />} />
+        {/* <Route path="*" element={<Navigate to="/adminlogin" />} /> */}
       </Routes>
+      </CartProvider>
     </div>
   );
 }

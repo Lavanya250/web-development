@@ -90,8 +90,8 @@ function Login() {
             </button>
           </div>
           {error && <p className="login-error">{error}</p>}
-          <div className="login-button-container">
-            <button type="submit" className="login-button" disabled={loading}>
+          <div className="login-butt-contain">
+            <button type="submit2" className="login-butt" disabled={loading}>
               {loading ? 'Logging in...' : 'Login'}
             </button>
             <Link to="/forgot-password" className="login-forgot-password">Forgot Password?</Link>

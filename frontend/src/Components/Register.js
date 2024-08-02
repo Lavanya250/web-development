@@ -145,9 +145,9 @@ function Register() {
               className="register-input"
               />
           </div>
-          {error && <p className="register-error">{error}</p>}
-          <div className="register-button-container">
-            <button type="submit" className="register-button" disabled={loading}>
+          {error && <p className="register-erro">{error}</p>}
+          <div className="registerbuttoncontainer">
+            <button type="submit" className="registerbutton" disabled={loading}>
               {loading ? 'Registering...' : 'Register'}
             </button>
             <p>Already have an account? <Link to="/login" className="register-link">Login</Link></p>
