@@ -191,7 +191,7 @@ body {
   transform: scale(1.05);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
 }
-.heading-big {
+.heading-big1 {
   background-color: #f8f9fa; /* Light background color for contrast */
   padding: 15px 0;
   width: 100%;
@@ -202,14 +202,15 @@ body {
   margin: 20px 0;
 }
 
-.head-div {
+.head-div1 {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 10px; /* Space between items */
-  margin-bottom: 20px;
+
+  /* margin-bottom: 20px; */
 }
 
-.head-div .disco-mor {
+.head-div1 .disco-mor {
   background-color: #f3f3f3; /* Light background for each item */
   border-radius: 5px; /* Rounded corners for a modern look */
   border: 2px solid #ddd; /* Border color to match the section's border */
@@ -222,7 +223,7 @@ body {
   width: 20%; /* Responsive width for each item */
 }
 
-.head-div .disco-mor:hover {
+.head-div1 .disco-mor:hover {
   background-color: #ddd; /* Darker background on hover */
   color: #000; /* Change text color on hover */
   border-color: #bbb; /* Change border color on hover */

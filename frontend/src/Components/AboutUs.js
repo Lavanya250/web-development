@@ -3,6 +3,8 @@ import './AboutUs.css';
 import Header from './Header';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 
 const AboutUs = () => {
   return (
@@ -16,13 +18,13 @@ const AboutUs = () => {
         </div>
         <div className="description-container">
           <h2>About Us</h2>
-          <p>
+          <p className='aboutcontent'> 
             Welcome to our company! We are dedicated to providing the best service possible.
             Our team of experts are committed to ensuring customer satisfaction and delivering
             top-notch products. With years of experience in the industry, we strive to exceed
             expectations and build long-lasting relationships with our clients.
           </p>
-          <p>
+          <p className='aboutcontent'>
             Our mission is to innovate and lead in our field, constantly improving and adapting
             to meet the needs of our customers. Thank you for choosing us and we look forward to
             serving you.

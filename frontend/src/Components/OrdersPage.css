@@ -1,0 +1,55 @@
+.buy-details-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .order-summary {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .order-summary h2 {
+    margin-top: 0;
+  }
+  
+  .order-summary p {
+    margin: 5px 0;
+  }
+  
+  .payment-form {
+    margin-top: 20px;
+  }
+  
+  .payment-form label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .payment-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .payment-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .payment-form button:hover {
+    background-color: #218838;
+  }
+  

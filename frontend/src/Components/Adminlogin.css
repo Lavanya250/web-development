@@ -37,8 +37,10 @@
 }
 
 .login-logo-text {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 23px;
+  /* font-weight: ; */
+  font-style: italic;
+  color: red;
 }
 
 .login-form-container {

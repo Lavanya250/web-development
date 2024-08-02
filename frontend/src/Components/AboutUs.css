@@ -28,6 +28,9 @@
   .description-container h2 {
     margin-bottom: 20px;
   }
+  .aboutcontent{
+    font-style: italic;
+  }
   
   .description-container p {
     font-size: 16px;

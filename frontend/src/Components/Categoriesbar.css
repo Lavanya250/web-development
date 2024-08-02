@@ -1,0 +1,71 @@
+.appBar {
+  z-index: 1300; /* Ensure it appears above other content */
+}
+
+.toolbar {
+  background-color: #f5b26ee7; /* Customize the color as needed */
+  display: flex;
+  justify-content: space-between; /* Space between logo and tabs */
+  align-items: center; /* Center items vertically */
+  padding: 0 20px; /* Optional: Add padding to the sides */
+}
+
+.logo {
+  height: 40px; /* Adjust the height as needed */
+  cursor: pointer;
+  margin-right: 50px; /* Space between logo and tabs */
+}
+
+.tabs {
+  flex-grow: 1;
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.categoryDropdown {
+  position: relative;
+  /* margin-right: 30px; */
+  background-color: rgba(235, 32, 32, 0.663);
+  border-radius: 20px;
+}
+
+.MuiTab-root {
+  min-width: 100px;
+  color: rgb(158, 149, 149);
+  text-align: center; /* Center text within tab */
+  padding: 0 15px; /* Optional: Add padding for spacing */
+  display: flex; /* Enable flex for centering text */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+}
+
+.MuiMenuItem-root {
+  color: rgb(37, 6, 6);
+}
+
+.MuiMenu-paper {
+  background-color: #e0f7fa; /* Background color of the dropdown menu */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+}
+
+.searchBar {
+  margin-left: 55%; /* Space between categories dropdown and search bar */
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.searchInput {
+  border: 1px  rgb(16, 171, 21);
+  width: 390px; /* Adjust width as needed */
+  background-color: white; /* Set background color to white */
+  color: black; /* Ensure text is visible on white background */
+  /* border: 1px solid #0fea46; Optional: Add a border for better definition */
+}
+
+.cartIcon {
+  margin-left: 20px; /* Space between search bar and cart icon */
+  display: flex;
+  align-items: center; /* Center icon vertically */
+  color: rgb(7, 89, 7); /* Color for the cart icon */
+}
