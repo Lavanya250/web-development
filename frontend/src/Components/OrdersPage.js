@@ -12,13 +12,15 @@ const OrdersPage = () => {
     const deliveryInfo = {
       name: event.target.name.value,
       phoneNumber: event.target.phoneNumber.value,
-      deliveryAddress: event.target.deliveryAddress.value,
+      roomNumber: event.target.roomNumber.value,
+      street: event.target.street.value,
+      city: event.target.city.value,
+      state: event.target.state.value,
       timeSlot: event.target.timeSlot.value,
-      paymentMethod: event.target.paymentMethod.value,
     };
 
-    // Navigate to the confirmation page
-    navigate('/orderconfirm', { state: { order, deliveryInfo } });
+    // Navigate to the payment page
+    navigate('/paymentpage', { state: { order, deliveryInfo } });
   };
 
   return (
@@ -41,8 +43,20 @@ const OrdersPage = () => {
               <input type="text" name="phoneNumber" placeholder="123-456-7890" required />
             </label>
             <label>
-              Delivery Address:
-              <input type="text" name="deliveryAddress" placeholder="123 Main St, City, Country" required />
+              Room Number:
+              <input type="text" name="roomNumber" placeholder="Room 101" required />
+            </label>
+            <label>
+              Street:
+              <input type="text" name="street" placeholder="123 Main St" required />
+            </label>
+            <label>
+              City:
+              <input type="text" name="city" placeholder="City" required />
+            </label>
+            <label>
+              State:
+              <input type="text" name="state" placeholder="State" required />
             </label>
             <label>
               Time Slot for Delivery:
@@ -54,20 +68,7 @@ const OrdersPage = () => {
                 <option value="4-6PM">4-6 PM</option>
               </select>
             </label>
-            <h3>Payment Options</h3>
-            <label>
-              <input type="radio" name="paymentMethod" value="UPI" required />
-              UPI
-            </label>
-            <label>
-              <input type="radio" name="paymentMethod" value="Net Banking" required />
-              Net Banking
-            </label>
-            <label>
-              <input type="radio" name="paymentMethod" value="Cash on Delivery" required />
-              Cash on Delivery
-            </label>
-            <button type="su">Submit Order</button>
+            <button type="submit">Proceed To Payment</button>
           </form>
         </div>
       ) : (

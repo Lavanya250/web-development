@@ -5,7 +5,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 
 const Orderconfirm = () => {
   const { state } = useLocation();
-  const { order, deliveryInfo } = state || {};
+  const { order, deliveryInfo, paymentMethod } = state || {};
 
   return (
     <div className="confirmation-page">
@@ -16,8 +16,9 @@ const Orderconfirm = () => {
           <p><strong>Product Name:</strong> {order.name}</p>
           <p><strong>Quantity:</strong> {order.quantity}</p>
           <p><strong>Total Amount:</strong> ${(order.price * order.quantity).toFixed(2)}</p>
-          <p><strong>Delivery Address:</strong> {deliveryInfo.deliveryAddress}</p>
+          <p><strong>Delivery Address:</strong> {deliveryInfo.roomNumber}, {deliveryInfo.street}, {deliveryInfo.city}, {deliveryInfo.state}</p>
           <p><strong>Time Slot:</strong> {deliveryInfo.timeSlot}</p>
+          <p><strong>Payment Method:</strong> {paymentMethod}</p>
           <div className="rating-section">
             <label>
               <strong>Rate Your Experience:</strong>

@@ -10,9 +10,9 @@ const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
 
-  const handleBuyClick = () => {
-    navigate('/orderspage', { state: { cart } });
-  };
+  // const handleBuyClick = () => {
+  //   navigate('/orderspage', { state: { cart } });
+  // };
 
   if (!cart) {
     return <Typography variant="body1">Error: Cart is not defined</Typography>;
@@ -45,7 +45,7 @@ const Cart = () => {
             ))}
           </List>
           <Divider style={{ margin: '20px 0' }} />
-          <Button variant="contained" color="primary" onClick={handleBuyClick}>
+          <Button variant="contained" color="primary" >
             Proceed to Checkout
           </Button>
         </>

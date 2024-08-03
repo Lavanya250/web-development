@@ -3,6 +3,7 @@ package com.supermarket.freshmart.controller;
 import com.supermarket.freshmart.model.Feedback;
 import com.supermarket.freshmart.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,9 +33,18 @@ public class FeedbackController {
     }
 
     @PostMapping
-    public Feedback createFeedback(@RequestBody Feedback feedback) {
-        return feedbackService.saveFeedback(feedback);
+    public ResponseEntity<Feedback> createFeedback(@RequestBody Feedback feedback) {
+        try {
+            Feedback savedFeedback = feedbackService.saveFeedback(feedback);
+            return ResponseEntity.ok(savedFeedback);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+    
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Feedback> updateFeedback(@PathVariable int id, @RequestBody Feedback feedbackDetails) {

@@ -15,6 +15,7 @@ import OrdersPage from './Components/OrdersPage';
 import OrderConfirm from './Components/Orderconfirm';
 import { CartProvider } from './Components/Cartcontext';
 import Cart from './Components/Cart';
+import PaymentPage from './Components/PagementPage';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/shapecards" element={<Shapecards />} />
         <Route path="/ExoticFruits" element={<ExoticFruits />} />
         <Route path="/orderspage" element={<OrdersPage />} />
+        <Route path="/paymentpage" element={<PaymentPage/>} />
         <Route path="/orderconfirm" element={<OrderConfirm />} />
         <Route path="/cart" element={<Cart />} />
         {/* <Route path="*" element={<Navigate to="/adminlogin" />} /> */}

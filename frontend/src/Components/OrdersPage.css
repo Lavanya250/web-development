@@ -41,12 +41,7 @@ h1 {
   box-sizing: border-box;
 }
 
-.delivery-form input[type="radio"] {
-  width: auto;
-  margin-right: 5px;
-}
-
-button[type="su"] {
+button[type="submit"] {
   display: block;
   width: 100%;
   padding: 10px;
@@ -57,6 +52,6 @@ button[type="su"] {
   cursor: pointer;
 }
 
-button[type="su"]:hover {
+button[type="submit"]:hover {
   background-color: #0056b3;
 }

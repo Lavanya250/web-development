@@ -4,19 +4,17 @@
 // import jakarta.persistence.GeneratedValue;
 // import jakarta.persistence.GenerationType;
 // import jakarta.persistence.Id;
+// import jakarta.persistence.Table;
 // import lombok.Data;
 
 // @Entity
 // @Data
-// public class Product {
+// @Table(name="payment_table")
+// public class Payment {
 //     @Id
 //     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //     private Long id;
-//     private String name;
-//     private String imageUrl;  // Field for the image URL
-//     private double price;
-//     private int amount;
-//     private int rating;
+//     private String paymentMethod;
 // }
 
 package com.supermarket.freshmart.model;
@@ -24,20 +22,15 @@ package com.supermarket.freshmart.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Data
-public class Product {
+@Table(name="payment_table")
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String imageUrl;  // Field for the image URL
-    private double price;
-    private int amount;
-    private int rating;
+    private String paymentMethod;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Order> orders;
+    @OneToOne(mappedBy = "payment")
+    private Order order;
 }
