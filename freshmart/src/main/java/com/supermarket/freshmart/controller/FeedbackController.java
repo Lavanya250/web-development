@@ -32,6 +32,16 @@ public class FeedbackController {
         }
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Feedback> getFeedbackByEmail(@PathVariable String email) {
+        Optional<Feedback> feedback = feedbackService.getFeedbackByEmail(email);
+        if (feedback.isPresent()) {
+            return ResponseEntity.ok(feedback.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Feedback> createFeedback(@RequestBody Feedback feedback) {
         try {
@@ -43,8 +53,6 @@ public class FeedbackController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-    
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Feedback> updateFeedback(@PathVariable int id, @RequestBody Feedback feedbackDetails) {
@@ -61,10 +69,30 @@ public class FeedbackController {
         }
     }
 
+    @PutMapping("/email/{email}")
+    public ResponseEntity<Feedback> updateFeedbackByEmail(@PathVariable String email, @RequestBody Feedback feedbackDetails) {
+        try {
+            Feedback updatedFeedback = feedbackService.updateFeedbackByEmail(email, feedbackDetails);
+            return ResponseEntity.ok(updatedFeedback);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFeedback(@PathVariable int id) {
         if (feedbackService.getFeedbackById(id).isPresent()) {
             feedbackService.deleteFeedback(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/email/{email}")
+    public ResponseEntity<Void> deleteFeedbackByEmail(@PathVariable String email) {
+        if (feedbackService.getFeedbackByEmail(email).isPresent()) {
+            feedbackService.deleteFeedbackByEmail(email);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

@@ -22,6 +22,10 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public Optional<Product> getProductByName(String name) {
+        return productRepository.findByName(name);
+    }
+
     public Product createProduct(Product product) {
         return productRepository.save(product);
     }
@@ -31,7 +35,20 @@ public class ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
         product.setName(productDetails.getName());
-        product.setImageUrl(productDetails.getImageUrl());  // Updated
+        product.setImageUrl(productDetails.getImageUrl());
+        product.setPrice(productDetails.getPrice());
+        product.setAmount(productDetails.getAmount());
+        product.setRating(productDetails.getRating());
+
+        return productRepository.save(product);
+    }
+
+    public Product updateProductByName(String name, Product productDetails) {
+        Product product = productRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        product.setName(productDetails.getName());
+        product.setImageUrl(productDetails.getImageUrl());
         product.setPrice(productDetails.getPrice());
         product.setAmount(productDetails.getAmount());
         product.setRating(productDetails.getRating());
@@ -41,5 +58,9 @@ public class ProductService {
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
+    }
+
+    public void deleteProductByName(String name) {
+        productRepository.deleteByName(name);
     }
 }

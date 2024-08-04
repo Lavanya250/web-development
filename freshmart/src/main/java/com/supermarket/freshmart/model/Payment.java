@@ -17,6 +17,24 @@
 //     private String paymentMethod;
 // }
 
+// package com.supermarket.freshmart.model;
+
+// import jakarta.persistence.*;
+// import lombok.Data;
+
+// @Entity
+// @Data
+// @Table(name="payment_table")
+// public class Payment {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Long id;
+//     private String paymentMethod;
+
+//     @OneToOne(mappedBy = "payment")
+//     private Order order;
+// }
+
 package com.supermarket.freshmart.model;
 
 import jakarta.persistence.*;
@@ -24,13 +42,18 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="payment_table")
+@Table(name = "payment_table")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String paymentMethod;
 
-    @OneToOne(mappedBy = "payment")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 }

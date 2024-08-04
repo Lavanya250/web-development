@@ -19,26 +19,16 @@ public class FeedbackService {
     @Autowired
     private UserRepository userRepository;
 
-    public Feedback savedFeedback(Feedback feedback) {
-        // Check if the User exists
-        if (feedback.getUser() == null || feedback.getUser().getId() == 0) {
-            throw new IllegalArgumentException("User ID is required");
-        }
-
-        // Fetch the User from the repository
-        User user = userRepository.findById(feedback.getUser().getId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
-        feedback.setUser(user);
-        return feedbackRepository.save(feedback);
-    }
-
     public List<Feedback> getAllFeedback() {
         return feedbackRepository.findAll();
     }
 
     public Optional<Feedback> getFeedbackById(int id) {
         return feedbackRepository.findById(id);
+    }
+
+    public Optional<Feedback> getFeedbackByEmail(String email) {
+        return feedbackRepository.findByEmail(email);
     }
 
     public Feedback saveFeedback(Feedback feedback) {
@@ -50,7 +40,23 @@ public class FeedbackService {
         return feedbackRepository.save(feedback);
     }
 
+    public Feedback updateFeedbackByEmail(String email, Feedback feedbackDetails) {
+        Feedback feedback = feedbackRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Feedback not found"));
+
+        feedback.setName(feedbackDetails.getName());
+        feedback.setEmail(feedbackDetails.getEmail());
+        feedback.setSubject(feedbackDetails.getSubject());
+        feedback.setMessage(feedbackDetails.getMessage());
+
+        return feedbackRepository.save(feedback);
+    }
+
     public void deleteFeedback(int id) {
         feedbackRepository.deleteById(id);
+    }
+
+    public void deleteFeedbackByEmail(String email) {
+        feedbackRepository.deleteByEmail(email);
     }
 }

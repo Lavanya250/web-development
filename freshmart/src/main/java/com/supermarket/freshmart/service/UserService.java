@@ -23,6 +23,11 @@ public class UserService {
         return optionalUser.orElse(null);
     }
 
+    public User getUserByEmail(String email) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        return optionalUser.orElse(null);
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -35,8 +40,30 @@ public class UserService {
         return false;
     }
 
+    public boolean deleteUserByEmail(String email) {
+        if (userRepository.existsByEmail(email)) {
+            userRepository.deleteByEmail(email);
+            return true;
+        }
+        return false;
+    }
+
     public User updateUser(int id, User updatedUser) {
         Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setFirstName(updatedUser.getFirstName());
+            user.setLastName(updatedUser.getLastName());
+            user.setEmail(updatedUser.getEmail());
+            user.setPassword(updatedUser.getPassword());
+            user.setMobileNumber(updatedUser.getMobileNumber());
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
+    public User updateUserByEmail(String email, User updatedUser) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             user.setFirstName(updatedUser.getFirstName());
