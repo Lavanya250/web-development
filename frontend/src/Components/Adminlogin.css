@@ -1,11 +1,11 @@
-.login-wrapper {
+/* .login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 60vh;
   min-width: 100vh;
   background-color: whitesmoke; /* Optional: for better contrast */
-}
+/* }
 
 .login-parent-container {
   display: flex;
@@ -25,7 +25,7 @@
   justify-content: center;
   padding: 30px;
   border-right: 1px solid #ccc; /* Optional: a line separating the logo and the form */
-}
+/* }
 
 .login-logo {
   max-width: 150px;
@@ -39,7 +39,7 @@
 .login-logo-text {
   font-size: 23px;
   /* font-weight: ; */
-  font-style: italic;
+  /* font-style: italic;
   color: red;
 }
 
@@ -48,12 +48,12 @@
   padding: 30px;
 }
 
-.login-title {
-  text-align: center;
+.login-title { */
+  /* text-align: center;
   margin-bottom: 20px;
-}
+} */
 
-.login-form {
+/* .login-form {
   display: flex;
   flex-direction: column;
 }
@@ -62,9 +62,9 @@
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-}
+} */
 
-.login-icon {
+/* .login-icon {
   margin-right: 10px;
 }
 
@@ -93,9 +93,9 @@
 .login-button-container {
   margin-top: 10px;
   padding-left: 80px;
-}
+} */
 
-.login-button {
+/* .login-button {
   width: 50%;
   padding: 10px;
   background-color: #fb312ef7;
@@ -104,8 +104,8 @@
   color: #fff;
   font-size: 16px;
   cursor: pointer;
-}
+} */
 
-.login-button:hover {
+/* .login-button:hover {
   background-color: #464ff9b8;
-}
+}  */

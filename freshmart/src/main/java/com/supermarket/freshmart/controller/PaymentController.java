@@ -4,6 +4,7 @@ import com.supermarket.freshmart.model.Payment;
 import com.supermarket.freshmart.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,48 +17,35 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<Payment> getAllPayments() {
         return paymentService.getAllPayments();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Payment> getPaymentById(@PathVariable Long id) {
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Payment> getPaymentById(@PathVariable int id) {
         return paymentService.getPaymentById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/order/{orderId}")
-    public ResponseEntity<Payment> getPaymentByOrderId(@PathVariable Long orderId) {
-        return paymentService.getPaymentByOrderId(orderId)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public Payment createPayment(@RequestBody Payment payment) {
         return paymentService.createPayment(payment);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Payment> updatePayment(@PathVariable Long id, @RequestBody Payment paymentDetails) {
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Payment> updatePayment(@PathVariable int id, @RequestBody Payment paymentDetails) {
         return ResponseEntity.ok(paymentService.updatePayment(id, paymentDetails));
     }
 
-    @PutMapping("/order/{orderId}")
-    public ResponseEntity<Payment> updatePaymentByOrderId(@PathVariable Long orderId, @RequestBody Payment paymentDetails) {
-        return ResponseEntity.ok(paymentService.updatePaymentByOrderId(orderId, paymentDetails));
-    }
-
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePayment(@PathVariable Long id) {
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Void> deletePayment(@PathVariable int id) {
         paymentService.deletePayment(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping("/order/{orderId}")
-    public ResponseEntity<Void> deletePaymentByOrderId(@PathVariable Long orderId) {
-        paymentService.deletePaymentByOrderId(orderId);
         return ResponseEntity.noContent().build();
     }
 }

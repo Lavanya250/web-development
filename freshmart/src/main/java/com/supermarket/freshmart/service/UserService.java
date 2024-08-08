@@ -3,6 +3,8 @@ package com.supermarket.freshmart.service;
 import com.supermarket.freshmart.model.User;
 import com.supermarket.freshmart.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +16,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User addUser(User user) {
+    @Autowired 
+    private PasswordEncoder passwordEncoder;
+
+   // newUser
+    public User createUser(@NonNull User user) {
+        // Encrypt the password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -74,5 +82,10 @@ public class UserService {
             return userRepository.save(user);
         }
         return null;
+    }
+
+    public User addUser(User user) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addUser'");
     }
 }

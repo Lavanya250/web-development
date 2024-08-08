@@ -86,7 +86,7 @@ body {
   }
   
   /* Container for the buttons */
-  .login-butt-contain {
+  .login-button-contain {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,7 +94,7 @@ body {
   }
   
   /* Login button styles */
-  .login-butt {
+  .login-button {
     padding: 12px;
     font-size: 18px;
     background-color: #f85f48ef;
@@ -107,7 +107,7 @@ body {
     transition: background-color 0.3s ease;
   }
   
-  .login-butt:hover {
+  .login-button:hover {
     background-color: #c5351cd9;
   }
   

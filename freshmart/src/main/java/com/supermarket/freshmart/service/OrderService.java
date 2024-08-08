@@ -35,8 +35,7 @@ public class OrderService {
     }
 
     public Order updateOrder(Long id, Order orderDetails) {
-        Order order = orderRepository.findById(id).orElse(null);
-        if (order != null) {
+        return orderRepository.findById(id).map(order -> {
             order.setProductName(orderDetails.getProductName());
             order.setPrice(orderDetails.getPrice());
             order.setQuantity(orderDetails.getQuantity());
@@ -48,26 +47,23 @@ public class OrderService {
             order.setState(orderDetails.getState());
             order.setTimeSlot(orderDetails.getTimeSlot());
             return orderRepository.save(order);
-        }
-        return null;
+        }).orElse(null);
     }
 
     public Order updateOrderByCustomerName(String customerName, Order orderDetails) {
-        Order order = orderRepository.findByCustomerName(customerName)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
-
-        order.setProductName(orderDetails.getProductName());
-        order.setPrice(orderDetails.getPrice());
-        order.setQuantity(orderDetails.getQuantity());
-        order.setCustomerName(orderDetails.getCustomerName());
-        order.setPhoneNumber(orderDetails.getPhoneNumber());
-        order.setRoomNumber(orderDetails.getRoomNumber());
-        order.setStreet(orderDetails.getStreet());
-        order.setCity(orderDetails.getCity());
-        order.setState(orderDetails.getState());
-        order.setTimeSlot(orderDetails.getTimeSlot());
-
-        return orderRepository.save(order);
+        return orderRepository.findByCustomerName(customerName).map(order -> {
+            order.setProductName(orderDetails.getProductName());
+            order.setPrice(orderDetails.getPrice());
+            order.setQuantity(orderDetails.getQuantity());
+            order.setCustomerName(orderDetails.getCustomerName());
+            order.setPhoneNumber(orderDetails.getPhoneNumber());
+            order.setRoomNumber(orderDetails.getRoomNumber());
+            order.setStreet(orderDetails.getStreet());
+            order.setCity(orderDetails.getCity());
+            order.setState(orderDetails.getState());
+            order.setTimeSlot(orderDetails.getTimeSlot());
+            return orderRepository.save(order);
+        }).orElseThrow(() -> new RuntimeException("Order not found"));
     }
 
     public void deleteOrder(Long id) {

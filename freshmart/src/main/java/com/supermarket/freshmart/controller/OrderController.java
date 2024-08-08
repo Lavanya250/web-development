@@ -4,6 +4,7 @@ import com.supermarket.freshmart.model.Order;
 import com.supermarket.freshmart.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,20 +17,26 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
-        return orderService.createOrder(order);
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+        Order createdOrder = orderService.createOrder(order);
+        return ResponseEntity.status(201).body(createdOrder);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    public ResponseEntity<List<Order>> getAllOrders() {
+        List<Order> orders = orderService.getAllOrders();
+        return ResponseEntity.ok(orders);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable Long id) {
-        return orderService.getOrderById(id);
+    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+        Order order = orderService.getOrderById(id);
+        return order != null ? ResponseEntity.ok(order) : ResponseEntity.notFound().build();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/customer/{customerName}")
     public ResponseEntity<Order> getOrderByCustomerName(@PathVariable String customerName) {
         return orderService.getOrderByCustomerName(customerName)
@@ -37,26 +44,39 @@ public class OrderController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PreAuthorize(" hasAuthority('ADMIN') or hasAuthority('USER')")
     @GetMapping("/customer/all/{customerName}")
-    public List<Order> getAllOrdersByCustomerName(@PathVariable String customerName) {
-        return orderService.getAllOrdersByCustomerName(customerName);
+    public ResponseEntity<List<Order>> getAllOrdersByCustomerName(@PathVariable String customerName) {
+        List<Order> orders = orderService.getAllOrdersByCustomerName(customerName);
+        return ResponseEntity.ok(orders);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public Order updateOrder(@PathVariable Long id, @RequestBody Order orderDetails) {
-        return orderService.updateOrder(id, orderDetails);
+    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order orderDetails) {
+        Order updatedOrder = orderService.updateOrder(id, orderDetails);
+        return updatedOrder != null ? ResponseEntity.ok(updatedOrder) : ResponseEntity.notFound().build();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/customer/{customerName}")
     public ResponseEntity<Order> updateOrderByCustomerName(@PathVariable String customerName, @RequestBody Order orderDetails) {
-        return ResponseEntity.ok(orderService.updateOrderByCustomerName(customerName, orderDetails));
+        try {
+            Order updatedOrder = orderService.updateOrderByCustomerName(customerName, orderDetails);
+            return ResponseEntity.ok(updatedOrder);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
+        return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/customer/{customerName}")
     public ResponseEntity<Void> deleteOrderByCustomerName(@PathVariable String customerName) {
         orderService.deleteOrderByCustomerName(customerName);

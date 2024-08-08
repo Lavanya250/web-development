@@ -18,19 +18,15 @@ public class PaymentService {
         return paymentRepository.findAll();
     }
 
-    public Optional<Payment> getPaymentById(Long id) {
+    public Optional<Payment> getPaymentById(int id) {
         return paymentRepository.findById(id);
-    }
-
-    public Optional<Payment> getPaymentByOrderId(Long orderId) {
-        return paymentRepository.findByOrderId(orderId);
     }
 
     public Payment createPayment(Payment payment) {
         return paymentRepository.save(payment);
     }
 
-    public Payment updatePayment(Long id, Payment paymentDetails) {
+    public Payment updatePayment(int id, Payment paymentDetails) {
         Payment payment = paymentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Payment not found"));
 
@@ -39,20 +35,7 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
 
-    public Payment updatePaymentByOrderId(Long orderId, Payment paymentDetails) {
-        Payment payment = paymentRepository.findByOrderId(orderId)
-                .orElseThrow(() -> new RuntimeException("Payment not found"));
-
-        payment.setPaymentMethod(paymentDetails.getPaymentMethod());
-
-        return paymentRepository.save(payment);
-    }
-
-    public void deletePayment(Long id) {
+    public void deletePayment(int id) {
         paymentRepository.deleteById(id);
-    }
-
-    public void deletePaymentByOrderId(Long orderId) {
-        paymentRepository.deleteByOrderId(orderId);
     }
 }
