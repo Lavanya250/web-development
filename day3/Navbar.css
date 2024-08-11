@@ -1,0 +1,64 @@
+/* General styles for centering and structure */
+.navbar-wrapper {
+  display: flex;
+  justify-content: center; /* Center the navbar horizontally */
+  position: relative;
+}
+
+.nav-top {
+  padding-left: 78px;
+}
+
+/* Styles for the navbar container */
+.navbar1 {
+  width: 90%;
+  background-color: #167246;
+  display: flex;
+  justify-content: space-between; /* Ensure space between menu items and login */
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px 20px; /* Adjust padding as needed */
+  margin-top: 100px; /* Adjust this value based on the height of your fixed header */
+}
+
+/* Styles for the menu list */
+.navbar-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+/* Styles for each menu item */
+.navbar-item {
+  margin: 0 15px;
+}
+
+.navbar-item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  transition: text-decoration 0.3s;
+}
+
+.navbar-item a:hover {
+  text-decoration: underline;
+}
+
+/* Styles for the login link container */
+.navbar-login {
+  margin-right: 20px;
+}
+
+.navbar-login-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: text-decoration 0.3s;
+}
+
+.navbar-login-link:hover {
+  text-decoration: underline;
+}

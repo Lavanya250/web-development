@@ -1,0 +1,142 @@
+/* General styles */
+body {
+    margin: 0;
+    /* font-family: Arial, sans-serif; */
+    background-position: 100px;
+  background-color: #376ca0;
+.loginback{
+  background-color: #cafee68f;
+}
+  }
+  
+  /* Wrapper for the entire login component */
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    /* height: 50%; */
+    background-color: #cafee68f;
+  }
+
+  /* Container for the login form */
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(123, 123, 124, 0.252);
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding-top: 90px;
+  }
+  
+  /* Title of the login form */
+  .login-title {
+    font-size: 24px;
+    color: #a92525ca;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Form styles */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+  
+  /* Container for the input fields and icons */
+  .login-input-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 2px solid #189f28ad;
+    padding-bottom: 5px;
+  }
+  
+  /* Icon styles */
+  .login-icon {
+    margin-right: 10px;
+    color: #007BFF;
+  }
+  
+  /* Input field styles with underline only */
+  .login-input {
+    padding: 10px 0;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    flex: 1;
+    background: none;
+  }
+  
+  /* Button to toggle password visibility */
+  .login-toggle-button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0b459d9d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  /* Container for the buttons */
+  .login-button-contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Login button styles */
+  .login-button {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #f85f48ef;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 30%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #c5351cd9;
+  }
+  
+  /* Link to forgot password page */
+  .login-forgot-password {
+    font-size: 14px;
+    color: rgba(4, 111, 35, 0.793);
+    text-decoration: none;
+    margin-top: 10px;
+  }
+  
+  .login-forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Link to registration page */
+  .login-link {
+    font-size: 16px;
+    color: #b02e2ed5;
+    text-decoration: none;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Error message styles */
+  .login-error {
+    color: red;
+    margin: 10px 0;
+  }
+  

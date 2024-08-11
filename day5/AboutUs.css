@@ -1,0 +1,40 @@
+/* AboutUs.css */
+.about-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .image-container {
+    flex: 1;
+    text-align: center;
+    padding-right: 20px; /* Add some space between image and description */
+  }
+  
+  .about-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Add space between images */
+  }
+  
+  .description-container {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  .description-container h2 {
+    margin-bottom: 20px;
+  }
+  .aboutcontent{
+    font-style: italic;
+  }
+  
+  .description-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
