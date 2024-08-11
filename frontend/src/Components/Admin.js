@@ -1,123 +1,115 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
 import logo from '../assets/logo.jpg';
 import { FaHome, FaBox, FaClipboardList, FaPercent, FaUsers, FaSignOutAlt } from 'react-icons/fa';
+import axios from 'axios';
 
 const Admin = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
+  const fetchUsers = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Ensure this token is correctly stored and valid
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await axios.get('http://localhost:8080/api/users/getAll', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error.response ? error.response.data : error.message);
+      if (error.response && error.response.status === 403) {
+        console.error('Access denied. Please check your permissions or token.');
+      }
+    }
+  };
+
+  const fetchProducts = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Ensure this token is correctly stored and valid
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await axios.get('http://localhost:8080/api/products/getAllproducts', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching products:', error.response ? error.response.data : error.message);
+      if (error.response && error.response.status === 403) {
+        console.error('Access denied. Please check your permissions or token.');
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+    fetchProducts();
+  }, []);
+
   const handleLogout = () => {
-    navigate('/Adminlogin');
+    localStorage.removeItem('token');
+    navigate('/login', { replace: true });
+    window.history.pushState(null, '', window.location.origin);
+    window.addEventListener('popstate', function (event) {
+      window.history.pushState(null, '', window.location.origin);
+    });
   };
 
   const renderProducts = () => {
-    const products = [
-      { id: 1, name: 'Product 1', description: 'Description for product 1', price: '$10', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQswRSCROpQXSG1V4d9BorBXKnoLxImPyotgQ&s', quantity: 50, offer: '10% off' },
-      { id: 2, name: 'Product 2', description: 'Description for product 2', price: '$20', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9OvXyIbKSL2DAUf8HgJgeWL4WtcLC_I627A&s', quantity: 30, offer: '15% off' },
-      { id: 3, name: 'Product 3', description: 'Description for product 3', price: '$30', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAJ1hTEAmjhMMglYJ9cKQSwq5Orp_S0SD8XA&s', quantity: 20, offer: '20% off' },
-      { id: 4, name: 'Product 3', description: 'Description for product 3', price: '$30', image: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Kiwi-fruits-582a07b.jpg?quality=90&resize=556,505', quantity: 20, offer: '20% off' },
-      { id: 5, name: 'Product 3', description: 'Description for product 3', price: '$30', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv16mQSx3cF7qBs4FbJKowZc0BnvzdtAtFfQ&s', quantity: 20, offer: '20% off' },
-      { id: 6, name: 'Product 3', description: 'Description for product 3', price: '$30', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJxAhIhH1ceBFSxON5AQYhL2j6gXOWxm27Pw&s', quantity: 20, offer: '20% off' },
-      // Add more products as needed
-    ];
-
     return (
       <div className="products-container">
         <div className="products-header">
           <span>ID</span>
-          <span>Image</span>
-          <span>Product Name</span>
-          <span>Description</span>
+          <span>Name</span>
           <span>Price</span>
-          <span>Quantity</span>
-          <span>Offer</span>
+          <span>Amount</span>
         </div>
         {products.map(product => (
           <div className="product-row" key={product.id}>
             <span>{product.id}</span>
-            <span><img src={product.image} alt={product.name} className="product-image" /></span>
             <span>{product.name}</span>
-            <span>{product.description}</span>
             <span>{product.price}</span>
-            <span>{product.quantity}</span>
-            <span>{product.offer}</span>
+            <span>{product.amount}</span>
           </div>
         ))}
       </div>
     );
   };
-  
+
   const renderOrders = () => {
-    const orders = [
-      { id: 1, customer: 'Teahyung', product: 'Carrot', quantity: 2, total: '$40', date: '2024-07-20' },
-      { id: 2, customer: 'Karthick', product: 'Cake', quantity: 1, total: '$150', date: '2024-07-21' },
-      { id: 3, customer: 'Mythili', product: 'Oranges', quantity: 3, total: '$100', date: '2024-07-22' },
-      { id: 4, customer: 'Agalya', product: 'Curry leaves', quantity: 2, total: '$20', date: '2024-01-20' },
-      { id: 5, customer: 'Ram', product: 'Watermelon', quantity: 1, total: '$80', date: '2023-07-21' },
-      { id: 6, customer: 'Aathi', product: 'Sugar', quantity: 3, total: '$90', date: '2024-07-02' },
-      { id: 7, customer: 'Sangeetha', product: 'Cups', quantity: 2, total: '$200', date: '2024-02-20' },
-      { id: 8, customer: 'Kalai', product: 'Spoons', quantity: 1, total: '$50', date: '2023-07-1' },
-      { id: 9, customer: 'Saravanan', product: 'Wter bottle', quantity: 3, total: '$100', date: '2024-07-22' },
-      // Add more orders as needed
-    ];
-
-    return (
-      <div className="orders-container">
-        <div className="orders-header">
-          <span>ID</span>
-          <span>Customer</span>
-          <span>Product</span>
-          <span>Quantity</span>
-          <span>Total</span>
-          <span>Date</span>
-        </div>
-        {orders.map(order => (
-          <div className="order-row" key={order.id}>
-            <span>{order.id}</span>
-            <span>{order.customer}</span>
-            <span>{order.product}</span>
-            <span>{order.quantity}</span>
-            <span>{order.total}</span>
-            <span>{order.date}</span>
-          </div>
-        ))}
-      </div>
-    );
+    // Placeholder for orders rendering logic
+    return <div>Orders Section</div>;
   };
-  const renderUsers = () => {
-    const orders = [
-      { id: 1, Name: 'Lavanya',LastName:'G', Email: 'Lavanya@gmail.com', Password: '12@345',Date:'24-11-03' },
-      { id: 2, Name: 'Sangeetha',LastName:'S', Email: '00@gmail.com', Password:'lava@24t5' ,Date:'23-04-23'},
-      { id: 3, Name: 'Agalya',LastName:'G', Email: 'Agal@gmail.com', Password: 'gyi@456',Date:'22-12-04' },
-      { id: 4, Name: 'Divish',LastName:'K', Email: 'D@gmail.com', Password: 'wv@134',Date:'21-05-12' },
-      { id: 5, Name: 'Kaviya',LastName:'K', Email: 'Ka@gmail.com', Password: '12789',Date:'24-01-25' },
-      { id: 6, Name: 'Kalaivani',LastName:'R', Email: 'Kalai@gmail.com', Password: 'lava',Date:'24--12-03' },
-      { id: 7, Name: 'Varchini',LastName:'S', Email: 'Vac@gmail.com', Password: 'varchini',Date:'22-11-01' },
-      { id: 8, Name: 'Surya',LastName:'M', Email: 'Sur@gmail.com', Password: 'mam' ,Date:'22-02-14'},
-      
-      // Add more orders as needed
-    ];
 
+  const renderUsers = () => {
     return (
-      <div className="orders-container">
-        <div className="orders-header">
+      <div className="users-container">
+        <div className="users-header">
           <span>ID</span>
           <span>Name</span>
-          <span>LastName</span>
+          <span>Last Name</span>
           <span>Email</span>
-          <span>Password</span>
-          <span>Date</span>
         </div>
-        {orders.map(order => (
-          <div className="order-row" key={order.id}>
-             <span>{order.id}</span>
-            <span>{order.Name}</span>
-            <span>{order.LastName}</span>
-            <span>{order.Email}</span>
-            <span>{order.Password}</span>
-            <span>{order.Date}</span>
+        {users.map(user => (
+          <div className="user-row" key={user.id}>
+            <span>{user.id}</span>
+            <span>{user.firstName}</span>
+            <span>{user.lastName}</span>
+            <span>{user.email}</span>
           </div>
         ))}
       </div>
@@ -127,30 +119,30 @@ const Admin = () => {
   const renderContent = () => {
     switch (activeSection) {
       case 'home':
-        return (
-          <div>
-            <div className="cards-container">
-              <div className="card">
-                <div className="card-content">
-                  <div className="text-content">
-                    <h3>Total Orders</h3>
-                    <p>This is the content of card 1.</p>
-                  </div>
-                  <div className="card-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu0QgfW4a6IlCA7ovda0QgqlEg4kQpSL4eew&s" alt="Card 1" />
-                  </div>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-content">
-                  <div className="text-content">
-                    <h3>Delivered</h3>
-                    <p>This is the content of card 2.</p>
-                  </div>
-                  <div className="card-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2SKaBdII-9cJdTRQfFfGuEr3mPUOP_dOfJA&s" alt="Card 2" />
+          return (
+            <div>
+              <div className="cards-container">
+                <div className="card">
+                  <div className="card-content">
+                    <div className="text-content">
+                      <h3>Total Orders</h3>
+                      <p>This is the content of card 1.</p>
+                    </div>
+                    <div className="card-image">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu0QgfW4a6IlCA7ovda0QgqlEg4kQpSL4eew&s" alt="Card 1" />
+                    </div>
                   </div>
                 </div>
+                <div className="card">
+                  <div className="card-content">
+                    <div className="text-content">
+                      <h3>Delivered</h3>
+                      <p>This is the content of card 2.</p>
+                    </div>
+                    <div className="card-image">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2SKaBdII-9cJdTRQfFfGuEr3mPUOP_dOfJA&s" alt="Card 2" />
+                    </div>
+                    </div>
               </div>
               <div className="card">
                 <div className="card-content">
@@ -231,14 +223,12 @@ const Admin = () => {
         );
       case 'products':
         return renderProducts();
-     
       case 'orders':
         return renderOrders();
-     
       case 'users':
         return renderUsers();
       default:
-        return renderContent;
+        return <div>Select a section</div>;
     }
   };
 
@@ -257,13 +247,11 @@ const Admin = () => {
               <FaBox /> <span>Products</span>
             </a>
           </li>
-         
           <li className={activeSection === 'orders' ? 'active' : ''}>
             <a href="#orders" onClick={() => setActiveSection('orders')}>
               <FaClipboardList /> <span>Orders</span>
             </a>
           </li>
-          
           <li className={activeSection === 'users' ? 'active' : ''}>
             <a href="#users" onClick={() => setActiveSection('users')}>
               <FaUsers /> <span>Users</span>

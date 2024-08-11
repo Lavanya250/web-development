@@ -2,6 +2,8 @@ import React from 'react';
 import './ExoticFruits.css'; // Import the CSS file for styling
 import Categoriesbar from './Categoriesbar';
 import Footer from './Footer';
+import { useCart } from './Cartcontext';
+
 
 const products = [
   { id: 1, name: 'Product 1', brand: 'Brand A', kg: '1kg', price: '$10', image: 'https://skinkraft.com/cdn/shop/articles/Evidence-Based_0c2e7cf7-9a14-438f-a65b-ab7cce47c279_1024x400.jpg?v=1642487732' },
@@ -14,9 +16,17 @@ const products = [
   { id: 8, name: 'Product 8', brand: 'Brand H', kg: '3kg', price: '$30', image: 'https://forestfruits.com.au/wp-content/uploads/2021/08/custard-apple-fresh-each1-600x600.jpg' },
   { id: 9, name: 'Product 9', brand: 'Brand I', kg: '1kg', price: '$10', image: 'https://ripeme.com/wp-content/uploads/potato.jpg' },
   // Add more products as needed
-];
 
-function ExoticFruits() {
+];
+  function ExoticFruits() {
+    const { addToCart } = useCart(); // Get addToCart function from context
+  
+    const handleAddToCart = (product) => {
+      addToCart(product); // Add product to the cart
+    };
+  
+
+
   return (
     <div className="page-container1">
       <Categoriesbar />
@@ -30,8 +40,8 @@ function ExoticFruits() {
               <span className="product-kg">{product.kg}</span>
               <span className="product-price1">{product.price}</span>
               <div className="product-buttons1">
-                <button className="add-to-cart1">Add to Cart</button>
-                <button className="buy-now1">Buy Now</button>
+              <button className="add-to-cart1" onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              <button className="buy-now1">Buy Now</button>
               </div>
             </div>
           </div>
@@ -40,6 +50,7 @@ function ExoticFruits() {
       <Footer />
     </div>
   );
+
 }
 
 export default ExoticFruits;

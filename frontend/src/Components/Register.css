@@ -83,7 +83,7 @@ body {
 }
 
 /* Error message styles */
-.register-erro {
+.register-error {
   color: red;
   margin: 10px 0;
   text-align: center;

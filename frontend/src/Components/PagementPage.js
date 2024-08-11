@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import './PaymentPage.css';
 
 const PaymentPage = () => {
@@ -12,13 +13,33 @@ const PaymentPage = () => {
     setPaymentMethod(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic
-    console.log('Payment method:', paymentMethod);
 
-    // Navigate to the order confirmation page with the order, deliveryInfo, and paymentMethod
-    navigate('/orderconfirm', { state: { order, deliveryInfo, paymentMethod } });
+    // Prepare the payment data
+    const paymentData = {
+      orderId: order.id,
+      paymentMethod,
+      amount: order.totalAmount,
+      deliveryInfo,
+    };
+
+    try {
+      // Send payment data to the backend API using axios
+      const response = await axios.post('http://127.0.0.1:8080/api/payments', paymentData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log('Payment processed:', response.data);
+
+      // Navigate to the order confirmation page with the order, deliveryInfo, and paymentMethod
+      navigate('/orderconfirm', { state: { order, deliveryInfo, paymentMethod } });
+    } catch (error) {
+      console.error('Error processing payment:', error);
+      // Handle errors (e.g., show an error message to the user)
+    }
   };
 
   return (

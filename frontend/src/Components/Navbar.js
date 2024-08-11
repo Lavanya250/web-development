@@ -22,7 +22,7 @@ function Navbar() {
         </li>
       </ul>
       <div className="navbar-login">
-        <Link to="/login" className="navbar-login-link">Login</Link>
+        <Link to="/categories" className="navbar-login-link">Offers</Link>
       </div>
     </nav>
     </div>

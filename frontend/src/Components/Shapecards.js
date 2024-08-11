@@ -2,6 +2,7 @@ import React from 'react';
 import './Shapecards.css'; // Import the CSS file for styling
 import Categoriesbar from './Categoriesbar';
 import Footer from './Footer';
+import { useCart } from './Cartcontext';
 
 const products = [
   { id: 1, name: 'Product 1', brand: 'Brand A', kg: '1kg', price: '$10', image: 'https://cdn.ecommercedns.uk/files/9/252449/9/38242799/download-7.jpg' },
@@ -17,6 +18,12 @@ const products = [
 ];
 
 function Shapecards() {
+  const { addToCart } = useCart(); // Get addToCart function from context
+
+  const handleAddToCart = (product) => {
+    addToCart(product); // Add product to the cart
+  };
+
   return (
     <div className="page-container1">
       <Categoriesbar />
@@ -30,7 +37,7 @@ function Shapecards() {
               <span className="product-kg">{product.kg}</span>
               <span className="product-price1">{product.price}</span>
               <div className="product-buttons1">
-                <button className="add-to-cart1">Add to Cart</button>
+                <button className="add-to-cart1" onClick={() => handleAddToCart(product)}>Add to Cart</button>
                 <button className="buy-now1">Buy Now</button>
               </div>
             </div>

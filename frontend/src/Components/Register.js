@@ -15,7 +15,7 @@ function Register() {
     email: '',
     password: '',
     confirmPassword: '',
-    phoneNumber: ''
+    mobileNumber: ''
   });
   const apiurl = "http://127.0.0.1:8080/api/users";
   const [error, setError] = useState('');
@@ -32,7 +32,7 @@ function Register() {
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.confirmPassword || !formData.phoneNumber) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.confirmPassword || !formData.mobileNumber) {
       setError('All fields are required.');
     } else if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
@@ -43,12 +43,13 @@ function Register() {
       setLoading(true);
       try {
         const response = await axios.post(apiurl, {
+          id:0,
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
           password: formData.password,
           confirmPassword: formData.confirmPassword,
-          mobileNumber: formData.phoneNumber,
+          mobileNumber: formData.mobileNumber,
           roles: "USER",
         });
         if (response.status === 201) {
@@ -151,10 +152,10 @@ function Register() {
               <FaPhone className="register-icon" />
               <input
                 type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                placeholder="Phone Number"
-                value={formData.phoneNumber}
+                id="mobileNumber"
+                name="mobileNumber"
+                placeholder="Mobile Number"
+                value={formData.mobileNumber}
                 onChange={handleChange}
                 className="register-input"
               />

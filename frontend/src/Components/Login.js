@@ -39,8 +39,8 @@ function Login() {
           formData
         );
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("role", response.data.role);
-        const role = localStorage.getItem("role");
+        localStorage.setItem("roles", response.data.role);
+        const role = localStorage.getItem("roles");
         if (role === "ADMIN") {
           navigate("/admin");
         } else {
@@ -102,7 +102,7 @@ function Login() {
             </div>
             {error && <p className="login-error">{error}</p>}
             <div className="login-button-contain">
-              <button type="submit2" className="login-button" disabled={loading}>
+              <button type="submit" className="login-button" disabled={loading}>
                 {loading ? 'Logging in...' : 'Login'}
               </button>
               <Link to="/forgot-password" className="login-forgot-password">Forgot Password?</Link>

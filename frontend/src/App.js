@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Adminlogin from './Components/Adminlogin';
 import Account from './Components/Account';
 import Login from './Components/Login';

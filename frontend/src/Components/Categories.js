@@ -33,7 +33,14 @@ const Categories = () => {
   const { addToCart } = useCart();
 
   const handleBuyClick = (category) => {
-    navigate('/orderspage', { state: { order: { ...category, quantity: 1 } } });
+    const token = localStorage.getItem('token');
+    if (token) {
+      // User is logged in, navigate to the order details page
+      navigate('/orderspage', { state: { order: { ...category, quantity: 1 } } });
+    } else {
+      // User is not logged in, navigate to the login page
+      navigate('/login');
+    }
   };
 
   return (
