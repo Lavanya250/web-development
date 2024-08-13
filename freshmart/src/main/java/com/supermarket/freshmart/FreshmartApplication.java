@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @SpringBootApplication
 public class FreshmartApplication {
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(FreshmartApplication.class, args);

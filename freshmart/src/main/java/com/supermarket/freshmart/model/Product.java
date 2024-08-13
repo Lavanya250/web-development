@@ -48,9 +48,9 @@ package com.supermarket.freshmart.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
+// import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Data
@@ -64,7 +64,7 @@ public class Product {
     private int amount;
     private int rating;
      
-    @JsonIgnore
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Order> orders;
+    // @JsonIgnore
+    // @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    // private List<Order> orders;
 }

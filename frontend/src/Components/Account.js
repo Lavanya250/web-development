@@ -1,34 +1,85 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import './Account.css';
 import Header from './Header';
 
-function Account() {
+const Account = () => {
   const [selectedSection, setSelectedSection] = useState('Personal Details');
+  const [userDetails, setUserDetails] = useState({
+    firstName: '',
+    email: '',
+    mobileNumber: '',
+  });
+  const [orders, setOrders] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        // Get token from local or session storage
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+        if (token) {
+          // Decode the token to extract email (assuming JWT format)
+          const email = JSON.parse(atob(token.split('.')[1])).sub;
+
+          // Fetch user details
+          const response = await axios.get(`http://127.0.0.1:8080/api/users/email/${email}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          // Update state with fetched user details
+          setUserDetails({
+            firstName: response.data.firstName,
+            email: response.data.email,
+            mobileNumber: response.data.mobileNumber,
+          });
+        } else {
+          console.warn('Token not found in localStorage or sessionStorage.');
+          navigate('/login'); // Redirect to login if token is missing
+        }
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+        navigate('/login'); // Redirect to login in case of error
+      }
+    };
+
+    fetchUserDetails();
+  }, [navigate]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        // Get token from local or session storage
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+        if (token && userDetails.email) {
+          // Fetch orders based on the user's email
+          const response = await axios.get(`http://127.0.0.1:8080/api/orders/email/all/${userDetails.email}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          // Update state with fetched orders
+          setOrders(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    };
+
+    if (userDetails.email) {
+      fetchOrders();
+    }
+  }, [userDetails.email]);
 
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
-
-  const orders = [
-    { id: 1, image: 'https://farzana.ae/images/thumbs/0005018_pomegranate.jpeg', name: 'Order #1', description: 'Description for order #1' },
-    { id: 2, image: 'https://www.urbangroc.com/wp-content/uploads/2022/08/malta-orange.jpg', name: 'Order #2', description: 'Description for order #2' },
-    { id: 2, image: 'https://tiimg.tistatic.com/fp/1/007/836/indian-origin-commonly-cultivated-100-pure-naturally-grown-red-banana-382.jpg', name: 'Order #2', description: 'Description for order #2' },
-    { id: 2, image: 'https://fruitique.in/cdn/shop/products/4_750x810.jpg?v=1627403623', name: 'Order #2', description: 'Description for order #2' },
-    // Add more orders as needed
-  ];
-
-  const payments = [
-    { id: 1, method: 'Credit Card', date: '2023-07-01', amount: '$150.00' },
-    { id: 2, method: 'PayPal', date: '2023-06-15', amount: '$75.00' },
-    // Add more payments as needed
-  ];
-
-  const pastOrders = [
-    { id: 1, image: 'https://www.veggycation.com.au/siteassets/veggycationvegetable/capsicum-red.jpg', name: 'Past Order #1', description: 'Description for past order #1', date: '2023-05-01' },
-    { id: 2, image: 'https://www.vedonic.com/cdn/shop/products/1iVCJLbFAEM_bpHZQDq2FNg5t8xiOa7aX_1024x1024.jpg?v=1659535908', name: 'Past Order #2', description: 'Description for past order #2', date: '2023-04-15' },
-    { id: 2, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmAnyjiohwLAAHugV08a2Uk5qSbFz2B4fvoljUqmEj5gYFjuml_9ilMzAOUzDKvEG8guM&usqp=CAU0', name: 'Past Order #2', description: 'Description for past order #2', date: '2023-04-15' },
-    // Add more past orders as needed
-  ];
 
   return (
     <div className="account-page">
@@ -48,70 +99,60 @@ function Account() {
               <h1>Personal Details</h1>
               <div className="details-container">
                 <div className="detail-item">
-                  <span>Name: John Doe</span>
+                  <span>Name: {userDetails.firstName || 'Loading...'}</span>
                   <button className="edit-button">Edit</button>
                 </div>
                 <div className="detail-item">
-                  <span>Email: john.doe@example.com</span>
+                  <span>Email: {userDetails.email || 'Loading...'}</span>
                 </div>
                 <div className="detail-item">
-                  <span>Delivery Address: 123 Main St, Springfield</span>
+                  <span>Mobile Number: {userDetails.mobileNumber || 'Loading...'}</span>
                 </div>
               </div>
             </div>
           )}
+
           {selectedSection === 'My Orders' && (
             <div className="my-orders">
               <h1>My Orders</h1>
-              <div className="orders-container">
-                {orders.map(order => (
-                  <div className="order-card" key={order.id}>
-                    <img src={order.image} alt={order.name} className="order-image" />
-                    <div className="order-details">
-                      <span className="order-name">{order.name}</span>
-                      <span className="order-description">{order.description}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <table className="orders-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Order Email</th>
+                    <th>Time Slot</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.length > 0 ? (
+                    orders.map((order) => (
+                      <tr key={order.id}>
+                        <td>{order.id}</td>
+                        <td>{order.productName}</td>
+                        <td>{order.price}</td>
+                        <td>{order.quantity}</td>
+                        <td>{order.orderEmail}</td> {/* Updated field name */}
+                        <td>{order.timeSlot}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="7">No orders found</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
           )}
-          {selectedSection === 'My Payment' && (
-            <div className="my-payments">
-              <h1>My Payments</h1>
-              <div className="payments-container">
-                {payments.map(payment => (
-                  <div className="payment-card" key={payment.id}>
-                    <span className="payment-method">{payment.method}</span>
-                    <span className="payment-date">{payment.date}</span>
-                    <span className="payment-amount">{payment.amount}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          {selectedSection === 'Past Orders' && (
-            <div className="past-orders">
-              <h1>Past Orders</h1>
-              <div className="past-orders-container">
-                {pastOrders.map(order => (
-                  <div className="past-order-card" key={order.id}>
-                    <img src={order.image} alt={order.name} className="past-order-image" />
-                    <div className="past-order-details">
-                      <span className="past-order-name">{order.name}</span>
-                      <span className="past-order-description">{order.description}</span>
-                      <span className="past-order-date">{order.date}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          {/* Add similar sections for other parts */}
+
+          {/* Other sections remain the same */}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Account;

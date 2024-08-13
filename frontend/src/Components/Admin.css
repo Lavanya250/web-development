@@ -174,37 +174,6 @@
   
   /* New styles for orders section */
   
-  .orders-container {
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .orders-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #2c3e50;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .orders-header span {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .order-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #ecf0f1;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .order-row span {
-    flex: 1;
-    text-align: center;
-  }
   
   .products-container {
     width: 100%;
@@ -304,4 +273,37 @@
   .navbar-right h1 {
     margin: 0;
   }
+  /* Admin.css */
+
+/* Orders Section Styles */
+.orders-container {
+  margin: 20px;
+}
+
+.orders-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  background-color: #34495e;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.order-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.order-row span {
+  text-align: center;
+}
+
   

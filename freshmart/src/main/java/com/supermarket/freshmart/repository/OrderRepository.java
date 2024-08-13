@@ -10,9 +10,10 @@ import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    Optional<Order> findByCustomerName(String customerName);
-    List<Order> findAllByCustomerName(String customerName);
+    Optional<Order> findByOrderEmail(String orderEmail);
+    List<Order> findAllByOrderEmail(String orderEmail);
     
     @Transactional
-    void deleteByCustomerName(String customerName);
+    void deleteByOrderEmail(String orderEmail);
 }
+

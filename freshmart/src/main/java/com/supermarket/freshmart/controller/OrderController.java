@@ -36,18 +36,18 @@ public class OrderController {
         return order != null ? ResponseEntity.ok(order) : ResponseEntity.notFound().build();
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/customer/{customerName}")
-    public ResponseEntity<Order> getOrderByCustomerName(@PathVariable String customerName) {
-        return orderService.getOrderByCustomerName(customerName)
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    @GetMapping("/email/{orderEmail}")
+    public ResponseEntity<Order> getOrderByOrderEmail(@PathVariable String orderEmail) {
+        return orderService.getOrderByOrderEmail(orderEmail)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PreAuthorize(" hasAuthority('ADMIN') or hasAuthority('USER')")
-    @GetMapping("/customer/all/{customerName}")
-    public ResponseEntity<List<Order>> getAllOrdersByCustomerName(@PathVariable String customerName) {
-        List<Order> orders = orderService.getAllOrdersByCustomerName(customerName);
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    @GetMapping("/email/all/{orderEmail}")
+    public ResponseEntity<List<Order>> getAllOrdersByOrderEmail(@PathVariable String orderEmail) {
+        List<Order> orders = orderService.getAllOrdersByOrderEmail(orderEmail);
         return ResponseEntity.ok(orders);
     }
 
@@ -59,10 +59,10 @@ public class OrderController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping("/customer/{customerName}")
-    public ResponseEntity<Order> updateOrderByCustomerName(@PathVariable String customerName, @RequestBody Order orderDetails) {
+    @PutMapping("/email/{orderEmail}")
+    public ResponseEntity<Order> updateOrderByOrderEmail(@PathVariable String orderEmail, @RequestBody Order orderDetails) {
         try {
-            Order updatedOrder = orderService.updateOrderByCustomerName(customerName, orderDetails);
+            Order updatedOrder = orderService.updateOrderByOrderEmail(orderEmail, orderDetails);
             return ResponseEntity.ok(updatedOrder);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -77,9 +77,9 @@ public class OrderController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/customer/{customerName}")
-    public ResponseEntity<Void> deleteOrderByCustomerName(@PathVariable String customerName) {
-        orderService.deleteOrderByCustomerName(customerName);
+    @DeleteMapping("/email/{orderEmail}")
+    public ResponseEntity<Void> deleteOrderByOrderEmail(@PathVariable String orderEmail) {
+        orderService.deleteOrderByOrderEmail(orderEmail);
         return ResponseEntity.noContent().build();
     }
 }

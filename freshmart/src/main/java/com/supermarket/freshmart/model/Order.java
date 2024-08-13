@@ -127,6 +127,7 @@ public class Order {
     private Integer quantity;
     private String customerName;
     private String phoneNumber;
+    private String orderEmail;
     private String roomNumber;
     private String street;
     private String city;
@@ -137,7 +138,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    // @ManyToOne
+    // @JoinColumn(name = "product_id")
+    // private Product product;
 }

@@ -82,113 +82,28 @@ body {
     background-color: #0056b3;
   }
   
-  /* My Orders */
-  .my-orders .orders-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
   
-  .order-card {
-    width: 200px; /* Increased width */
-    height: 250px; /* Set height */
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .order-image {
+  .orders-table {
     width: 100%;
-    border-radius: 10px 10px 0 0;
+    border-collapse: collapse;
+    margin-top: 20px;
   }
   
-  .order-details {
-    padding: 10px;
-    text-align: center;
+  .orders-table th, .orders-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
   }
   
-  .order-name {
-    font-weight: bold;
+  .orders-table th {
+    background-color: #f4f4f4;
+    text-align: left;
   }
   
-  .order-description {
-    margin-top: 5px;
-    color: #666;
-  }
-  
-  /* My Payments */
-  .my-payments .payments-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .payment-card {
-    width: 300px; /* Increased width */
-    height: 100px; /* Set height */
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: hsla(215, 34%, 64%, 0.319);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .payment-method {
-    font-weight: bold;
-  }
-  
-  .payment-date,
-  .payment-amount {
-    margin-top: 5px;
-    color: #666;
-  }
-  
-  /* Past Orders */
-  .past-orders .past-orders-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  
-  .past-order-card {
-    width: 230px; /* Increased width */
-    height: 280px; /* Set height */
-    border: 1px solid #ccc;
-    border-radius: 10px;
+  .orders-table tr:nth-child(even) {
     background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
   }
   
-  .past-order-image {
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-  }
-  
-  .past-order-details {
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .past-order-name {
-    font-weight: bold;
-  }
-  
-  .past-order-description {
-    margin-top: 5px;
-    color: #666;
-  }
-  
-  .past-order-date {
-    margin-top: 10px;
-    color: #999;
+  .orders-table tr:hover {
+    background-color: #ddd;
   }
   

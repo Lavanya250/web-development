@@ -9,11 +9,12 @@ const Admin = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
-
+  
   const fetchUsers = async () => {
     try {
-      const token = localStorage.getItem('token'); // Ensure this token is correctly stored and valid
+      const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('No token found');
       }
@@ -35,7 +36,7 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      const token = localStorage.getItem('token'); // Ensure this token is correctly stored and valid
+      const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('No token found');
       }
@@ -55,9 +56,32 @@ const Admin = () => {
     }
   };
 
+  const fetchOrders = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await axios.get('http://127.0.0.1:8080/api/orders/getAllorders', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      setOrders(response.data);
+    } catch (error) {
+      console.error('Error fetching orders:', error.response ? error.response.data : error.message);
+      if (error.response && error.response.status === 403) {
+        console.error('Access denied. Please check your permissions or token.');
+      }
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
     fetchProducts();
+    fetchOrders();
   }, []);
 
   const handleLogout = () => {
@@ -91,10 +115,29 @@ const Admin = () => {
   };
 
   const renderOrders = () => {
-    // Placeholder for orders rendering logic
-    return <div>Orders Section</div>;
-  };
-
+    return (
+      <div className="orders-container">
+        <div className="orders-header">
+          <span>OrderID</span>
+          <span>ProductName</span>
+          <span>Price</span>
+          <span>CustomerName</span>
+          <span>Email</span>
+          <span>TimeSlot</span>
+        </div>
+        {orders.map(order => (
+          <div className="order-row" key={order.id}>
+            <span>{order.id}</span>
+            <span>{order.productName}</span>
+            <span>{order.price}</span>
+            <span>{order.customerName}</span>
+            <span>{order.orderEmail}</span>
+            <span>{order.timeSlot}</span>
+          </div>
+        ))}
+      </div>
+);
+};
   const renderUsers = () => {
     return (
       <div className="users-container">
@@ -119,8 +162,8 @@ const Admin = () => {
   const renderContent = () => {
     switch (activeSection) {
       case 'home':
-          return (
-            <div>
+        return (
+          <div>
               <div className="cards-container">
                 <div className="card">
                   <div className="card-content">
@@ -219,7 +262,7 @@ const Admin = () => {
                 </div>
               </div>
             </div>
-          </div>
+ </div>
         );
       case 'products':
         return renderProducts();

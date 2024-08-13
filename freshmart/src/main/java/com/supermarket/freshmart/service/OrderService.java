@@ -26,12 +26,12 @@ public class OrderService {
         return orderRepository.findById(id).orElse(null);
     }
 
-    public Optional<Order> getOrderByCustomerName(String customerName) {
-        return orderRepository.findByCustomerName(customerName);
+    public Optional<Order> getOrderByOrderEmail(String orderEmail) {
+        return orderRepository.findByOrderEmail(orderEmail);
     }
 
-    public List<Order> getAllOrdersByCustomerName(String customerName) {
-        return orderRepository.findAllByCustomerName(customerName);
+    public List<Order> getAllOrdersByOrderEmail(String orderEmail) {
+        return orderRepository.findAllByOrderEmail(orderEmail);
     }
 
     public Order updateOrder(Long id, Order orderDetails) {
@@ -41,6 +41,7 @@ public class OrderService {
             order.setQuantity(orderDetails.getQuantity());
             order.setCustomerName(orderDetails.getCustomerName());
             order.setPhoneNumber(orderDetails.getPhoneNumber());
+            order.setOrderEmail(orderDetails.getOrderEmail());
             order.setRoomNumber(orderDetails.getRoomNumber());
             order.setStreet(orderDetails.getStreet());
             order.setCity(orderDetails.getCity());
@@ -50,13 +51,14 @@ public class OrderService {
         }).orElse(null);
     }
 
-    public Order updateOrderByCustomerName(String customerName, Order orderDetails) {
-        return orderRepository.findByCustomerName(customerName).map(order -> {
+    public Order updateOrderByOrderEmail(String orderEmail, Order orderDetails) {
+        return orderRepository.findByOrderEmail(orderEmail).map(order -> {
             order.setProductName(orderDetails.getProductName());
             order.setPrice(orderDetails.getPrice());
             order.setQuantity(orderDetails.getQuantity());
             order.setCustomerName(orderDetails.getCustomerName());
             order.setPhoneNumber(orderDetails.getPhoneNumber());
+            order.setOrderEmail(orderDetails.getOrderEmail());
             order.setRoomNumber(orderDetails.getRoomNumber());
             order.setStreet(orderDetails.getStreet());
             order.setCity(orderDetails.getCity());
@@ -70,7 +72,7 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 
-    public void deleteOrderByCustomerName(String customerName) {
-        orderRepository.deleteByCustomerName(customerName);
+    public void deleteOrderByOrderEmail(String orderEmail) {
+        orderRepository.deleteByOrderEmail(orderEmail);
     }
 }

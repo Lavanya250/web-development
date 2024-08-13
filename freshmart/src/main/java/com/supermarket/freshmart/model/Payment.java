@@ -66,12 +66,15 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="payment_table")
+@Table(name = "payment_table")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String paymentMethod;
+    private double amount; // Add amount field
+    private String paymentEmail; // Add paymentEmail field
 
     @OneToOne
     @JoinColumn(name = "user_id")
